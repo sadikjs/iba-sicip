@@ -43,3 +43,23 @@ export async function getRegisterById(registerId) {
         throw new Error(error)
     }
 }
+
+export async function getProfile(prfileId) {
+    try {
+        console.log("getProfile queries", prfileId)
+        await dbConnect();
+        const latestEntry = await Register.findOne({_id:prfileId}).lean()
+        if (!latestEntry) {
+            return NextResponse.json(null); // Return null if no entries
+        }
+        const formattedData = {
+            ...latestEntry,
+            _id: latestEntry._id.toString(),
+            dateOfBirth: latestEntry.dateOfBirth ? latestEntry.dateOfBirth.toISOString() : null,
+        };
+        console.log("getProfile return",formattedData)
+        return replaceMongoIdInObject(formattedData)
+    } catch (error) {
+        throw new Error(error)
+    }
+}

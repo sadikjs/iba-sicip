@@ -125,26 +125,26 @@ const Register = () => {
             experiedOrganizationOne: "",
             experiedDesignationOne: "",
             experiedOrganizationAddressOne: "",
-            experiedStartDateOne: new Date(),
-            experiedEndDateOne: new Date(),
+            experiedStartDateOne: "",
+            experiedEndDateOne: "",
             experiedDescriptionOne: "",
             experiedOrganizationTwo: "",
             experiedDesignationTwo: "",
             experiedOrganizationAddressTwo: "",
-            experiedStartDateTwo: new Date(),
-            experiedEndDateTwo: new Date(),
+            experiedStartDateTwo: "",
+            experiedEndDateTwo: "",
             experiedDescriptionTwo: "",
             experiedOrganizationThree: "",
             experiedDesignationThree: "",
             experiedOrganizationAddressThree: "",
-            experiedStartDateThree: new Date(),
-            experiedEndDateThree: new Date(),
+            experiedStartDateThree: "",
+            experiedEndDateThree: "",
             experiedDescriptionThree: "",
             experiedOrganizationFour: "",
             experiedDesignationFour: "",
             experiedOrganizationAddressFour: "",
-            experiedStartDateFour: new Date(),
-            experiedEndDateFour: new Date(),
+            experiedStartDateFour:"",
+            experiedEndDateFour: "",
             experiedDescriptionFour: "",
             profilePicture: "",
             signature: ""
@@ -246,27 +246,30 @@ const Register = () => {
             formData.append("experiedOrganizationOne", values.experiedOrganizationOne);
             formData.append("experiedDesignationOne", values.experiedDesignationOne);
             formData.append("experiedOrganizationAddressOne", values.experiedOrganizationAddressOne);
-
+            formData.append("experiedStartDateOne", values.experiedStartDateOne)
+            formData.append("experiedEndDateOne", values.experiedEndDateOne)
             formData.append("oneExperienceDay", oneExperienceDay)
-
             formData.append("experiedDescriptionOne", values.experiedDescriptionOne);
             formData.append("experiedOrganizationTwo", values.experiedOrganizationTwo);
             formData.append("experiedDesignationTwo", values.experiedDesignationTwo);
             formData.append("experiedOrganizationAddressTwo", values.experiedOrganizationAddressTwo);
+            formData.append("experiedStartDateTwo", values.experiedStartDateTwo)
+            formData.append("experiedEndDateTwo", values.experiedEndDateTwo)
             formData.append("twoExperienceDay", twoExperienceDay);
-
             formData.append("experiedDescriptionTwo", values.experiedDescriptionTwo);
             formData.append("experiedOrganizationThree", values.experiedOrganizationThree);
             formData.append("experiedDesignationThree", values.experiedDesignationThree);
             formData.append("experiedOrganizationAddressThree", values.experiedOrganizationAddressThree);
+            formData.append("experiedStartDateThree", values.experiedStartDateThree)
+            formData.append("experiedEndDateThree", values.experiedEndDateThree);
             formData.append("threeExperienceDay", threeExperienceDay);
-
             formData.append("experiedDescriptionThree", values.experiedDescriptionThree);
             formData.append("experiedOrganizationFour", values.experiedOrganizationFour);
             formData.append("experiedDesignationFour", values.experiedDesignationFour);
             formData.append("experiedOrganizationAddressFour", values.experiedOrganizationAddressFour);
+            formData.append("experiedStartDateFour", values.experiedStartDateFour);
+            formData.append("experiedEndDateFour", values.experiedEndDateFour);
             formData.append("fourExperienceDay", fourExperienceDay);
-
             formData.append("experiedDescriptionFour", values.experiedDescriptionFour);
             formData.append("profilePicture", profileImage);
             formData.append("signature", signature);
@@ -276,7 +279,7 @@ const Register = () => {
             })
             if (response.ok) {
                 const data = await response.json()
-                console.log("Registration successfully", data)
+                console.log("register component", data)
             }
             toast.success("Registration Successfully!")
             router.push("/login")
@@ -355,9 +358,9 @@ const Register = () => {
                                     name="dateOfBirth"
                                     render={({ field }) => (
                                         <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                            <FormLabel className="w-1/3 text-right">Date of Birth <span className="text-red-900 text-sm">*</span></FormLabel>
+                                            <FormLabel className="w-1/3 text-right">Date of Birth<span className="text-red-900 text-sm">*</span></FormLabel>
                                             <FormControl className="w-2/3">
-                                                <Input type="date" value="2008-01-01" min="1977-01-01" max="2008-01-01"  {...field} />
+                                                <Input type="date" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -1877,38 +1880,17 @@ const Register = () => {
                                         )}
                                     >
                                     </FormField>
-                                    <div className="flex w-[100%] flex-row justify-center items-center">
-                                        <div className="flex flex-row justify-center w-[72%]">
+                                    <div className="flex w-[100%] flex-row justify-evenly items-center">
+                                        <div className="flex flex-row justify-evenly items-center w-[70%] pl-10">
                                             <FormField
                                                 control={form.control}
                                                 name="experiedStartDateOne"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-1/2">
-                                                        <FormLabel className="w-1/2 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <Popover className="w-1/2">
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl>
-                                                                    <Button
-                                                                        variant={'outline'}
-                                                                        className={cn(
-                                                                            'w-[240px] pl-3 text-left font-normal',
-                                                                            !field.value && 'text-muted-foreground'
-                                                                        )}
-                                                                    >
-                                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabledDates={(date) => date > new Date()}
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
+                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="date" {...field} />
+                                                        </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -1918,32 +1900,11 @@ const Register = () => {
                                                 control={form.control}
                                                 name="experiedEndDateOne"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-1/2">
-                                                        <FormLabel className="w-1/2 text-right">End Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <Popover>
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl className="w-1/2">
-                                                                    <Button
-                                                                        variant={'outline'}
-                                                                        className={cn(
-                                                                            'w-[240px] pl-3 text-left font-normal',
-                                                                            !field.value && 'text-muted-foreground'
-                                                                        )}
-                                                                    >
-                                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabledDates={(date) => date > new Date()}
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
+                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="date" {...field} />
+                                                        </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -2027,37 +1988,16 @@ const Register = () => {
                                     >
                                     </FormField>
                                     <div className="flex w-[100%] flex-row justify-center items-center">
-                                        <div className="flex flex-row justify-center w-[72%]">
+                                        <div className="flex flex-row justify-center w-[72%] pl-11">
                                             <FormField
                                                 control={form.control}
                                                 name="experiedStartDateTwo"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-1/2">
-                                                        <FormLabel className="w-1/2 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <Popover className="w-1/2">
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl>
-                                                                    <Button
-                                                                        variant={'outline'}
-                                                                        className={cn(
-                                                                            'w-[240px] pl-3 text-left font-normal',
-                                                                            !field.value && 'text-muted-foreground'
-                                                                        )}
-                                                                    >
-                                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabledDates={(date) => date > new Date()}
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
+                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="date" {...field} />
+                                                        </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -2067,32 +2007,11 @@ const Register = () => {
                                                 control={form.control}
                                                 name="experiedEndDateTwo"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-1/2">
-                                                        <FormLabel className="w-1/2 text-right">End Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <Popover>
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl className="w-1/2">
-                                                                    <Button
-                                                                        variant={'outline'}
-                                                                        className={cn(
-                                                                            'w-[240px] pl-3 text-left font-normal',
-                                                                            !field.value && 'text-muted-foreground'
-                                                                        )}
-                                                                    >
-                                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabledDates={(date) => date > new Date()}
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
+                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="date" {...field} />
+                                                        </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -2162,37 +2081,16 @@ const Register = () => {
                                     >
                                     </FormField>
                                     <div className="flex w-[100%] flex-row justify-center items-center">
-                                        <div className="flex flex-row justify-center w-[72%]">
+                                        <div className="flex flex-row justify-center w-[72%] pl-11">
                                             <FormField
                                                 control={form.control}
                                                 name="experiedStartDateThree"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-1/2">
-                                                        <FormLabel className="w-1/2 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <Popover className="w-1/2">
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl>
-                                                                    <Button
-                                                                        variant={'outline'}
-                                                                        className={cn(
-                                                                            'w-[240px] pl-3 text-left font-normal',
-                                                                            !field.value && 'text-muted-foreground'
-                                                                        )}
-                                                                    >
-                                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabledDates={(date) => date > new Date()}
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
+                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="date" {...field} />
+                                                        </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -2202,32 +2100,11 @@ const Register = () => {
                                                 control={form.control}
                                                 name="experiedEndDateThree"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-1/2">
-                                                        <FormLabel className="w-1/2 text-right">End Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <Popover>
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl className="w-1/2">
-                                                                    <Button
-                                                                        variant={'outline'}
-                                                                        className={cn(
-                                                                            'w-[240px] pl-3 text-left font-normal',
-                                                                            !field.value && 'text-muted-foreground'
-                                                                        )}
-                                                                    >
-                                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabledDates={(date) => date > new Date()}
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
+                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="date" {...field} />
+                                                        </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -2297,39 +2174,18 @@ const Register = () => {
                                     >
                                     </FormField>
                                     <div className="flex w-[100%] flex-row justify-center items-center">
-                                        <div className="flex flex-row justify-center w-[72%]">
+                                        <div className="flex flex-row justify-center w-[72%] pl-11">
                                             <FormField
                                                 control={form.control}
                                                 name="experiedStartDateFour"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-1/2">
-                                                        <FormLabel className="w-1/2 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <Popover className="w-1/2">
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl>
-                                                                    <Button
-                                                                        variant={'outline'}
-                                                                        className={cn(
-                                                                            'w-[240px] pl-3 text-left font-normal',
-                                                                            !field.value && 'text-muted-foreground'
-                                                                        )}
-                                                                    >
-                                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabledDates={(date) => date > new Date()}
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
-                                                        <FormMessage />
-                                                    </FormItem>
+                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                    <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                    <FormControl className="w-2/3">
+                                                        <Input type="date" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
                                                 )}
                                             >
                                             </FormField>
@@ -2337,34 +2193,13 @@ const Register = () => {
                                                 control={form.control}
                                                 name="experiedEndDateFour"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-1/2">
-                                                        <FormLabel className="w-1/2 text-right">End Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <Popover>
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl className="w-1/2">
-                                                                    <Button
-                                                                        variant={'outline'}
-                                                                        className={cn(
-                                                                            'w-[240px] pl-3 text-left font-normal',
-                                                                            !field.value && 'text-muted-foreground'
-                                                                        )}
-                                                                    >
-                                                                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabledDates={(date) => date > new Date()}
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
-                                                        <FormMessage />
-                                                    </FormItem>
+                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                    <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                    <FormControl className="w-2/3">
+                                                        <Input type="date" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
                                                 )}
                                             >
                                             </FormField>

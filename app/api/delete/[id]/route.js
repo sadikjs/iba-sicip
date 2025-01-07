@@ -4,7 +4,6 @@ import Register from "@/model/register-model";
 import { NextResponse } from "next/server";
 export const DELETE = async (request, { params }) => {
   const id = (await params).id
-  console.log(id)
   try {
   await dbConnect();
   const deletedUser = await Register.findByIdAndDelete(id);

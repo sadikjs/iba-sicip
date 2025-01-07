@@ -1,6 +1,6 @@
 //external package
 import { z } from "zod"
-
+import {subYears } from 'date-fns';
 //regex
 const specificEmailRegex = /^[a-zA-Z0-9._%+-]+@(gmail|yahoo|hotmail)\.com$/;
 const numericRegex = /^(3(\.[0-9])?|4(\.[0-9])?|5(\.0)?)$/;
@@ -13,7 +13,22 @@ export const formSchema = z.object({
     name: z.string().min(4, { message: "please enter valid name", }),
     fatherName: z.string().min(2, { message: "Please enter valid Father's name", }),
     motherName: z.string().min(2, { message: "Please enter valid Mother's name", }),
-    dateOfBirth: z.string().date(),
+    dateOfBirth: z.string()
+    .refine((dateString) => {
+      try {
+        const dob = new Date(dateString);
+        if (isNaN(dob.getTime())) {
+          return false; // Invalid date format
+        }
+        const minDate = subYears(new Date(), 50);
+        const maxDate = subYears(new Date(), 20);
+        return dob >= minDate && dob <= maxDate;
+      } catch (error) {
+        return false; // Handle potential errors during date parsing
+      }
+    }, {
+      message: "Must be between 20 and 50 years old",
+    }),
     nationality: z.string().min(5, { message: "Please select nationality" }),
     religion: z.string().min(5, { message: "Please select religion" }),
     gender: z.string().min(2, { message: "Please select gender" }),
@@ -94,26 +109,26 @@ export const formSchema = z.object({
     experiedOrganizationOne: z.string(),
     experiedDesignationOne: z.string(),
     experiedOrganizationAddressOne: z.string(),
-    experiedStartDateOne: z.date().optional(),
-    experiedEndDateOne: z.date().optional(),
+    experiedStartDateOne: z.string(),
+    experiedEndDateOne: z.string(),
     experiedDescriptionOne: z.string(),
     experiedOrganizationTwo: z.string(),
     experiedDesignationTwo: z.string(),
     experiedOrganizationAddressTwo: z.string(),
-    experiedStartDateTwo: z.date().optional(),
-    experiedEndDateTwo: z.date().optional(),
+    experiedStartDateTwo: z.string(),
+    experiedEndDateTwo: z.string(),
     experiedDescriptionTwo: z.string(),
     experiedOrganizationThree: z.string(),
     experiedDesignationThree: z.string(),
     experiedOrganizationAddressThree: z.string(),
-    experiedStartDateThree: z.date().optional(),
-    experiedEndDateThree: z.date().optional(),
+    experiedStartDateThree: z.string(),
+    experiedEndDateThree: z.string(),
     experiedDescriptionThree: z.string(),
     experiedOrganizationFour: z.string(),
     experiedDesignationFour: z.string(),
     experiedOrganizationAddressFour: z.string(),
-    experiedStartDateFour: z.date().optional(),
-    experiedEndDateFour: z.date().optional(),
+    experiedStartDateFour: z.string(),
+    experiedEndDateFour: z.string(),
     experiedDescriptionFour: z.string(),
     profilePicture: z.string(),
     signature: z.string(),

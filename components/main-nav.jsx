@@ -22,13 +22,13 @@ export function MainNav({ items, children }) {
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 	const [loginSession, setLoginSession] = useState(null);
 	const [loggedInUser, setLoggedInUser] = useState(null);
+	console.log("main nav console", loggedInUser)
 	useEffect(() => {
         setLoginSession(session);
         async function fetchMe() {
             try {
                 const response = await fetch("/api/me");
                 const data = await response.json();
-                console.log(data);
                 setLoggedInUser(data);
             } catch (err) {
                 console.log(err);
@@ -92,7 +92,7 @@ export function MainNav({ items, children }) {
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end" className="w-56 mt-4">
 						<DropdownMenuItem className="cursor-pointer" asChild>
-							<Link href="/account">Profile</Link>
+							<Link href={`/profile/${loggedInUser?.id}`}>Profile</Link>
 						</DropdownMenuItem>
 						{loggedInUser?.role === "instructor" && (
 							<DropdownMenuItem

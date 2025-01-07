@@ -260,6 +260,12 @@ const registerSchema = new Schema({
         type: String, 
         
     },
+    experiedStartDateOne:{
+        type: Date,
+    },
+    experiedEndDateOne:{
+        type: Date,
+    },
     oneExperienceTotalDays:{
         type: String,
     },
@@ -276,7 +282,12 @@ const registerSchema = new Schema({
     experiedOrganizationAddressTwo:{
         type: String,
     },
-
+    experiedStartDateTwo:{
+        type: Date,
+    },
+    experiedEndDateTwo:{
+        type:Date
+    },
     twoExperienceTotalDays:{
         type: String
     },
@@ -293,7 +304,12 @@ const registerSchema = new Schema({
     experiedOrganizationAddressThree:{
         type: String
     },
-
+    experiedStartDateThree:{
+        type: Date,
+    },
+    experiedEndDateThree:{
+        type: Date
+    },
     threeExperienceTotalDays:{
         type: String
     },
@@ -309,6 +325,12 @@ const registerSchema = new Schema({
     },
     experiedOrganizationAddressFour:{
         type: String
+    },
+    experiedStartDateFour:{
+        type: Date
+    },
+    experiedEndDateFour:{
+        type:Date,
     },
     fourExperienceTotalDays:{
         type: String,
