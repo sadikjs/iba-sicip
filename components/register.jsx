@@ -7,11 +7,9 @@ import { useRouter } from "next/navigation";
 import { Roboto_Slab } from 'next/font/google'
 import { toast } from "sonner";
 import axios from "axios";
-import { format, differenceInDays } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 
 //internal package
-import { Calendar } from "./ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import {
     Form,
     FormField,
@@ -47,13 +45,14 @@ import { formSchema } from "@/lib/formSchema"
 
 //application form 
 const Register = () => {
-    const [agree, setAgree] = useState(true);
-    const [anotherOne, setAnotherOne] = useState(false);
-    const [anotherTwo, setAnotherTwo] = useState(false);
-    const [anotherThree, setAnotherThree] = useState(false);
-    const [highClass, setHighClass] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [highClass, setHighClass] = useState(true);
     const [profileImage, setProfileImage] = useState(null)
     const [signature, setSignature] = useState(null);
+    const [studentCategoryOne, setStudentCategoryOne] = useState(false);
+    const [studentCategoryTwo, setStudentCategoryTwo] = useState(false);
+    const [studentCategoryThree, setStudentCategoryThree] = useState(false);
+    const [studentCategoryFour, setStudentCategoryFour] = useState(false);
     const router = useRouter();
 
     const form = useForm({
@@ -143,7 +142,7 @@ const Register = () => {
             experiedOrganizationFour: "",
             experiedDesignationFour: "",
             experiedOrganizationAddressFour: "",
-            experiedStartDateFour:"",
+            experiedStartDateFour: "",
             experiedEndDateFour: "",
             experiedDescriptionFour: "",
             profilePicture: "",
@@ -162,7 +161,6 @@ const Register = () => {
             setSignature(e.target.files[0])
         }
     }
-
     async function allImages() {
         try {
             const { data: { image } } = await axios.get("/api/register")
@@ -171,9 +169,8 @@ const Register = () => {
             console.log(error.message)
         }
     }
-
-
     const onSubmit = async (values) => {
+        setIsSubmitting(true)
         try {
             const formData = new FormData();
             const oneExperienceDay = differenceInDays(values.experiedEndDateOne, values.experiedStartDateOne) + 1;
@@ -285,6 +282,8 @@ const Register = () => {
             router.push("/login")
         } catch (error) {
             console.log(message.error)
+        }finally{
+            setIsSubmitting(false)
         }
     }
     return (
@@ -359,10 +358,13 @@ const Register = () => {
                                     render={({ field }) => (
                                         <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
                                             <FormLabel className="w-1/3 text-right">Date of Birth<span className="text-red-900 text-sm">*</span></FormLabel>
+                                            <div className="w-2/3 flex flex-col">
                                             <FormControl className="w-2/3">
                                                 <Input type="date" {...field} />
                                             </FormControl>
+                                            <FormDescription className="text-red-800 text-xs">Applicants age should be minimum 20 years and maximum 50 years</FormDescription>
                                             <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 >
@@ -521,10 +523,13 @@ const Register = () => {
                                     render={({ field }) => (
                                         <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
                                             <FormLabel className="w-1/3 text-right">Email <span className="text-red-900 text-sm">*</span></FormLabel>
-                                            <FormControl className="w-2/3">
+                                            <div className="flex flex-col w-2/3">
+                                            <FormControl>
                                                 <Input type="email" {...field} />
                                             </FormControl>
+                                            <FormDescription className="text-red-800 text-xs">Must be provide valid email address</FormDescription>
                                             <FormMessage />
+                                            </div>
                                         </FormItem>
                                     )}
                                 >
@@ -599,13 +604,6 @@ const Register = () => {
                                     )}
                                 >
                                 </FormField>
-                                <div className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                    <label className="w-1/3 text-right" htmlFor="checkbox">You have Job Experience <span className="text-red-900 text-sm">*</span> </label>
-                                    <div className="w-2/3 flex flex-row justify-start ">
-                                        <input type="checkbox" id="checkbox" checked={agree} onChange={() => setAgree(!agree)} />
-                                        <p className="text-xs px-1 text-red-700">Experience Applicants must be checked</p>
-                                    </div>
-                                </div>
                                 <FormField
                                     control={form.control}
                                     name="studentCategory"
@@ -1610,7 +1608,6 @@ const Register = () => {
                                                 <FormControl>
                                                     <Input type="text" placeholder="Division or GPA" {...field} />
                                                 </FormControl>
-                                                <FormDescription className="text-red-800 text-xs">Enter your result here (1st Division, 2nd Division, 3rd Division and GPA)</FormDescription>
                                             </div>
                                             <FormMessage />
                                         </FormItem>
@@ -1689,15 +1686,15 @@ const Register = () => {
                                     )}
                                 >
                                 </FormField>
-                                <div className={`${roboto_slab.className} w-[100%] flex flex-row justify-center items-center mt-2`}>
-                                    <div className=" w-2/5 px-2 border border-gray-200 p-3 rounded-sm">
-                                        <input type="checkbox" id="highClass" checked={highClass} onChange={() => setHighClass(!highClass)} />
-                                        <label htmlFor="highClass" className="px-2">another one field add </label>
-                                    </div>
-                                </div>
+                                {highClass ? (
+                                    <Button className="w-1/4 text-white justify-center" onClick={() => setHighClass(!highClass)}>Add Education</Button>
+                                ) : (
+                                    null
+                                )
+                                }
                             </div>
 
-                            {highClass ? (
+                            {highClass ? (null):(
                                 <div className="w-11/12 z-0 relative p-8 my-6 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
                                     <div className="w-[94%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg"><p className="text-white text-xs font-bold">Another Higher Class /Equivalent Level</p></div>
                                     <FormField
@@ -1747,12 +1744,11 @@ const Register = () => {
                                         name="otherCourseResult"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/2 text-right">Result</FormLabel>
+                                                <FormLabel className="w-1/3 text-right">Result</FormLabel>
                                                 <div className="w-2/3">
                                                     <FormControl>
                                                         <Input type="text" placeholder="Division or GPA" {...field} />
                                                     </FormControl>
-                                                    <FormDescription className="text-red-800 text-xs">Enter your result here (1st Division, 2nd Division, 3rd Division and GPA)</FormDescription>
                                                 </div>
                                                 <FormMessage />
                                             </FormItem>
@@ -1831,13 +1827,12 @@ const Register = () => {
                                         )}
                                     >
                                     </FormField>
-                                </div>) : (
-                                null
-                            )
+                                </div>) 
                             }
-                            {agree ? (
-                                <div className="w-11/12 z-0 relative p-8 my-6 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
-                                    <div className="w-[94%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg"><p className="text-white text-xs font-bold">Job Experiences</p></div>
+
+                            <div className="w-11/12 z-0 relative p-8 my-6 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
+                                <div className="w-[94%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg"><p className="text-white text-xs font-bold">Job Experiences</p></div>
+                                {studentCategoryOne ? (<div>
                                     <FormField
                                         control={form.control}
                                         name="experiedOrganizationOne"
@@ -1926,77 +1921,134 @@ const Register = () => {
                                         )}
                                     >
                                     </FormField>
-                                    <div className={`${roboto_slab.className} flex flex-row justify-center items-center border border-gray-200 p-3 rounded-sm mt-2`}>
-                                        <div className="px-2">
-                                            <input type="checkbox" id="anotherOne" checked={anotherOne} onChange={() => setAnotherOne(!anotherOne)} />
-                                            <label htmlFor="anotherOne" className="px-2">another one field add </label>
-                                        </div>
-                                        <div className="px-2">
-                                            <input type="checkbox" id="anotherTwo" checked={anotherTwo} onChange={() => setAnotherTwo(!anotherTwo)} />
-                                            <label htmlFor="anotherTwo" className="px-2">another two field add </label>
-                                        </div>
-                                        <div className="px-2">
-                                            <input type="checkbox" id="anotherThree" checked={anotherThree} onChange={() => setAnotherThree(!anotherThree)} />
-                                            <label htmlFor="anotherThree" className="px-2">another three field add </label>
-                                        </div>
-                                    </div>
-                                </div>) : (null)
-                            }
-                            {anotherOne ? (
+                                    {studentCategoryTwo ? (null) : (
+                                        <Button className="w-1/4 text-white justify-center" onClick={() => setStudentCategoryTwo(!studentCategoryTwo)}>Add Experience</Button>
+                                    )
+                                    }
+                                </div>
+                                ) : (
+                                    <Button className="w-1/4 text-white justify-center" onClick={() => setStudentCategoryOne(!studentCategoryOne)}>Add Experience</Button>
+                                )
+                                }
+                            </div>
+
+                            {studentCategoryTwo ? (
                                 <div className="w-11/12 z-0 relative p-8 my-6 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
                                     <div className="w-[94%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg"><p className="text-white text-xs font-bold">Job Experiences Field Two</p></div>
-                                    <FormField
-                                        control={form.control}
-                                        name="experiedOrganizationTwo"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/3 text-right">Organization <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                <FormControl className="w-2/3">
-                                                    <Input type="text" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    >
-                                    </FormField>
-                                    <FormField
-                                        control={form.control}
-                                        name="experiedDesignationTwo"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/3 text-right">Designation <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                <FormControl className="w-2/3">
-                                                    <Input type="text" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    >
-                                    </FormField>
-                                    <FormField
-                                        control={form.control}
-                                        name="experiedOrganizationAddressTwo"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/3 text-right">Address <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                <FormControl className="w-2/3">
-                                                    <Input type="text" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    >
-                                    </FormField>
-                                    <div className="flex w-[100%] flex-row justify-center items-center">
-                                        <div className="flex flex-row justify-center w-[72%] pl-11">
+                                    <div>
+                                        <FormField
+                                            control={form.control}
+                                            name="experiedOrganizationTwo"
+                                            render={({ field }) => (
+                                                <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
+                                                    <FormLabel className="w-1/3 text-right">Organization <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                    <FormControl className="w-2/3">
+                                                        <Input type="text" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        >
+                                        </FormField>
+                                        <FormField
+                                            control={form.control}
+                                            name="experiedDesignationTwo"
+                                            render={({ field }) => (
+                                                <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
+                                                    <FormLabel className="w-1/3 text-right">Designation <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                    <FormControl className="w-2/3">
+                                                        <Input type="text" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        >
+                                        </FormField>
+                                        <FormField
+                                            control={form.control}
+                                            name="experiedOrganizationAddressTwo"
+                                            render={({ field }) => (
+                                                <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
+                                                    <FormLabel className="w-1/3 text-right">Address <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                    <FormControl className="w-2/3">
+                                                        <Input type="text" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        >
+                                        </FormField>
+                                        <div className="flex w-[100%] flex-row justify-center items-center">
+                                            <div className="flex flex-row justify-center w-[72%] pl-11">
+                                                <FormField
+                                                    control={form.control}
+                                                    name="experiedStartDateTwo"
+                                                    render={({ field }) => (
+                                                        <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                            <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                            <FormControl className="w-2/3">
+                                                                <Input type="date" {...field} />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                >
+                                                </FormField>
+                                                <FormField
+                                                    control={form.control}
+                                                    name="experiedEndDateTwo"
+                                                    render={({ field }) => (
+                                                        <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                            <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                            <FormControl className="w-2/3">
+                                                                <Input type="date" {...field} />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                >
+                                                </FormField>
+                                            </div>
+                                        </div>
+                                        <FormField
+                                            control={form.control}
+                                            name="experiedDescriptionTwo"
+                                            render={({ field }) => (
+                                                <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
+                                                    <FormLabel className="w-1/3 text-right">Job Description <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                    <FormControl className="w-2/3">
+                                                        <Textarea {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        >
+                                        </FormField>
+                                        {studentCategoryThree ? (null) : (
+                                            <Button className="w-1/4 text-white justify-center" onClick={() => setStudentCategoryThree(!studentCategoryThree)}>Add Experience</Button>
+                                        )
+                                        }
+                                    </div>
+                                </div>
+                            ) : (
+                                null
+                            )
+                            }
+
+
+                            {studentCategoryThree ?
+                                (
+                                    <div className="w-11/12 z-0 relative p-8 my-6 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
+                                        <div className="w-[94%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg"><p className="text-white text-xs font-bold">Job Experiences Field Three</p></div>
+                                        <div>
                                             <FormField
                                                 control={form.control}
-                                                name="experiedStartDateTwo"
+                                                name="experiedOrganizationThree"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
+                                                        <FormLabel className="w-1/3 text-right">Organization <span className="text-red-900 text-sm">*</span></FormLabel>
                                                         <FormControl className="w-2/3">
-                                                            <Input type="date" {...field} />
+                                                            <Input type="text" {...field} />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
@@ -2005,130 +2057,88 @@ const Register = () => {
                                             </FormField>
                                             <FormField
                                                 control={form.control}
-                                                name="experiedEndDateTwo"
+                                                name="experiedDesignationThree"
                                                 render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
+                                                        <FormLabel className="w-1/3 text-right">Designation <span className="text-red-900 text-sm">*</span></FormLabel>
                                                         <FormControl className="w-2/3">
-                                                            <Input type="date" {...field} />
+                                                            <Input type="text" {...field} />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
                                             >
                                             </FormField>
+                                            <FormField
+                                                control={form.control}
+                                                name="experiedOrganizationAddressThree"
+                                                render={({ field }) => (
+                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
+                                                        <FormLabel className="w-1/3 text-right">Address <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="text" {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            >
+                                            </FormField>
+                                            <div className="flex w-[100%] flex-row justify-center items-center">
+                                                <div className="flex flex-row justify-center w-[72%] pl-11">
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="experiedStartDateThree"
+                                                        render={({ field }) => (
+                                                            <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                                <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                                <FormControl className="w-2/3">
+                                                                    <Input type="date" {...field} />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    >
+                                                    </FormField>
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="experiedEndDateThree"
+                                                        render={({ field }) => (
+                                                            <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
+                                                                <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                                <FormControl className="w-2/3">
+                                                                    <Input type="date" {...field} />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    >
+                                                    </FormField>
+                                                </div>
+                                            </div>
+                                            <FormField
+                                                control={form.control}
+                                                name="experiedDescriptionThree"
+                                                render={({ field }) => (
+                                                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
+                                                        <FormLabel className="w-1/3 text-right">Job Description <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Textarea {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            >
+                                            </FormField>
+                                            {studentCategoryFour ? (null) : (
+                                                <Button className="w-1/4 text-white justify-center" onClick={() => setStudentCategoryFour(!studentCategoryFour)}>Add Experience</Button>
+                                            )
+                                            }
                                         </div>
                                     </div>
-                                    <FormField
-                                        control={form.control}
-                                        name="experiedDescriptionTwo"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/3 text-right">Job Description <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                <FormControl className="w-2/3">
-                                                    <Textarea {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    >
-                                    </FormField>
-                                </div>) : (null)
+                                ) : (null)
                             }
-                            {anotherTwo ? (
-                                <div className="w-11/12 z-0 relative p-8 my-6 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
-                                    <div className="w-[94%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg"><p className="text-white text-xs font-bold">Job Experiences Field Three</p></div>
-                                    <FormField
-                                        control={form.control}
-                                        name="experiedOrganizationThree"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/3 text-right">Organization <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                <FormControl className="w-2/3">
-                                                    <Input type="text" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    >
-                                    </FormField>
-                                    <FormField
-                                        control={form.control}
-                                        name="experiedDesignationThree"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/3 text-right">Designation <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                <FormControl className="w-2/3">
-                                                    <Input type="text" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    >
-                                    </FormField>
-                                    <FormField
-                                        control={form.control}
-                                        name="experiedOrganizationAddressThree"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/3 text-right">Address <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                <FormControl className="w-2/3">
-                                                    <Input type="text" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    >
-                                    </FormField>
-                                    <div className="flex w-[100%] flex-row justify-center items-center">
-                                        <div className="flex flex-row justify-center w-[72%] pl-11">
-                                            <FormField
-                                                control={form.control}
-                                                name="experiedStartDateThree"
-                                                render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <FormControl className="w-2/3">
-                                                            <Input type="date" {...field} />
-                                                        </FormControl>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            >
-                                            </FormField>
-                                            <FormField
-                                                control={form.control}
-                                                name="experiedEndDateThree"
-                                                render={({ field }) => (
-                                                    <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                        <FormControl className="w-2/3">
-                                                            <Input type="date" {...field} />
-                                                        </FormControl>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            >
-                                            </FormField>
-                                        </div>
-                                    </div>
-                                    <FormField
-                                        control={form.control}
-                                        name="experiedDescriptionThree"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                                                <FormLabel className="w-1/3 text-right">Job Description <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                <FormControl className="w-2/3">
-                                                    <Textarea {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    >
-                                    </FormField>
-                                </div>) : (null)
-                            }
-                            {anotherThree ? (
+
+                            {studentCategoryFour ? (
                                 <div className="w-11/12 z-0 relative p-8 my-6 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
                                     <div className="w-[94%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg"><p className="text-white text-xs font-bold">Job Experiences Field Four</p></div>
                                     <FormField
@@ -2180,12 +2190,12 @@ const Register = () => {
                                                 name="experiedStartDateFour"
                                                 render={({ field }) => (
                                                     <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                                                    <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                    <FormControl className="w-2/3">
-                                                        <Input type="date" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
+                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="date" {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
                                                 )}
                                             >
                                             </FormField>
@@ -2194,12 +2204,12 @@ const Register = () => {
                                                 name="experiedEndDateFour"
                                                 render={({ field }) => (
                                                     <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                                                    <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
-                                                    <FormControl className="w-2/3">
-                                                        <Input type="date" {...field} />
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
+                                                        <FormLabel className="w-1/3 text-right flex items-center">Start Date <span className="text-red-900 text-sm">*</span></FormLabel>
+                                                        <FormControl className="w-2/3">
+                                                            <Input type="date" {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
                                                 )}
                                             >
                                             </FormField>
@@ -2239,13 +2249,13 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="flex flex-col justify-center items-center">
-                                <Button className="w-20  bg-emerald-700 hover:bg-emerald-800 " type="submit">Submit</Button>
+                                <Button disabled={isSubmitting} className="w-20  bg-emerald-700 hover:bg-emerald-800" type="submit">{isSubmitting ? 'Submitting...' : 'Submit'}</Button>
                             </div>
                         </form>
                     </Form>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 export default Register

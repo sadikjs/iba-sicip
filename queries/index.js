@@ -22,20 +22,11 @@ export async function getRegisterById(registerId) {
             serialNo: 0,
             roll: 0,
             role: 0,
-            dateOfBirth: 0,
             password: 0,
             profilePicture: 0,
             profilePublicId: 0,
             signature: 0,
             signaturePublicId: 0,
-            experiedStartDateOne: 0,
-            experiedEndDateOne: 0,
-            experiedStartDateTwo: 0,
-            experiedEndDateTwo: 0,
-            experiedStartDateThree: 0,
-            experiedEndDateThree: 0,
-            experiedStartDateFour: 0,
-            experiedEndDateFour: 0,
             createdOn: 0, modifiedOn: 0,
         }).lean();
         return replaceMongoIdInObject(userId)
@@ -44,21 +35,11 @@ export async function getRegisterById(registerId) {
     }
 }
 
-export async function getProfile(prfileId) {
+
+export const getStudentLength = async () => {
     try {
-        console.log("getProfile queries", prfileId)
-        await dbConnect();
-        const latestEntry = await Register.findOne({_id:prfileId}).lean()
-        if (!latestEntry) {
-            return NextResponse.json(null); // Return null if no entries
-        }
-        const formattedData = {
-            ...latestEntry,
-            _id: latestEntry._id.toString(),
-            dateOfBirth: latestEntry.dateOfBirth ? latestEntry.dateOfBirth.toISOString() : null,
-        };
-        console.log("getProfile return",formattedData)
-        return replaceMongoIdInObject(formattedData)
+        const images = await Register.find({});
+        return ({ image: images, total: images.length })
     } catch (error) {
         throw new Error(error)
     }
