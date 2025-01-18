@@ -1,6 +1,8 @@
 import Register from "@/model/register-model";
 import { replaceMongoIdInObject, replaceMongoIdInArray } from "@/lib/mongoIdtoStringId";
 import dbConnect from "@/service/dbConnect";
+import ExamCenter from "@/model/exam-center";
+
 export async function getAllUsers() {
     try {
         const allUsers = await Register.find({}).lean();
@@ -42,5 +44,26 @@ export const getStudentLength = async () => {
         return ({ image: images, total: images.length })
     } catch (error) {
         throw new Error(error)
+    }
+}
+
+export const getAttendance = async() =>{
+    try {
+        const attendances = await ExamCenter.find().lean();
+        return replaceMongoIdInArray(attendances);
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+export const getSingleAttendance = async(attenId)=>{
+    try {
+        const sigleAttendance = await ExamCenter.findById(attenId).populate({
+            path: "students",
+            model: Register
+        }).lean()
+        return replaceMongoIdInObject(sigleAttendance)
+    } catch (error) {
+        throw new Error(error.message)
     }
 }

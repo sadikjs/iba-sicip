@@ -1,8 +1,9 @@
+
 // app/page.js (Frontend Component)
 'use client'; // Make it a client component
 import { useState } from 'react';
- 
-const DownloadExcel = ()=> {
+import { Button } from '@/components/ui/button';
+const SeatDownloadExcel = ()=> {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -10,7 +11,7 @@ const DownloadExcel = ()=> {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/csv-data');
+      const response = await fetch('/api/seat-plan');
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData?.message || 'Failed to export data');
@@ -35,12 +36,12 @@ const DownloadExcel = ()=> {
 
   return (
     <div>
-      <button onClick={handleExport} disabled={loading}>
-        {loading ? 'Exporting...': <span className='text-sm text-green-600 italic pointer-cursor'>Export Excel</span> }
-      </button>
+      <Button onClick={handleExport} disabled={loading}>
+        {loading ? 'Exporting...': <span className=' text-white pointer-cursor'>Export excel</span> }
+      </Button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }
 
-export default DownloadExcel
+export default SeatDownloadExcel
