@@ -1,18 +1,15 @@
 import { NextResponse } from "next/server";
-import { updateCourse } from "@/app/actions";
 import Register from "@/model/register-model";
 import dbConnect from "@/service/dbConnect";
-export const  POST = async(request)=> {
+export const POST = async (request) => {
   await dbConnect();
   try {
     const formData = await request.formData();
-    console.log(formData)
     const studentCategory = formData.get("studentCategory");
     const name = formData.get("name");
     const fatherName = formData.get("fatherName");
     const motherName = formData.get("motherName");
-    const dateOfBirthForm = formData.get("dateOfBirth");
-    const dateOfBirth = new Date(dateOfBirthForm)
+    const dateOfBirth = formData.get("dateOfBirth");
     const nationality = formData.get("nationality");
     const religion = formData.get("religion");
     const gender = formData.get("gender");
@@ -42,12 +39,14 @@ export const  POST = async(request)=> {
     const sscExamName = formData.get("sscExamName");
     const sscBoard = formData.get("sscBoard");
     const sscRoll = formData.get("sscRoll");
+    const sscInstitute = formData.get("sscInstitute");
     const sscResult = formData.get("sscResult");
     const sscGroup = formData.get("sscGroup");
     const sscPassingYear = formData.get("sscPassingYear");
     const hseExamName = formData.get("hseExamName");
     const hscBoard = formData.get("hscBoard");
     const hscRoll = formData.get("hscRoll");
+    const hscInstitute = formData.get("hscInstitute");
     const hscResult = formData.get("hscResult");
     const hscGroup = formData.get("hscGroup");
     const hscPassingYear = formData.get("hscPassingYear");
@@ -71,131 +70,143 @@ export const  POST = async(request)=> {
     const otherCourseDuration = formData.get("otherCourseDuration");
     const experiedOrganizationOne = formData.get("experiedOrganizationOne");
     const experiedDesignationOne = formData.get("experiedDesignationOne");
-    const experiedOrganizationAddressOne = formData.get("experiedOrganizationAddressOne");
-    const experiedStartDateOneForm = formData.get("experiedStartDateOne")
-    const experiedStartDateOne = new Date(experiedStartDateOneForm)
-    const experiedEndDateOneForm = formData.get("experiedEndDateOne")
-    const experiedEndDateOne = new Date(experiedEndDateOneForm)
+    const experiedOrganizationAddressOne = formData.get(
+      "experiedOrganizationAddressOne"
+    );
+    const experiedStartDateOne = formData.get("experiedStartDateOne");
+    const experiedEndDateOne = formData.get("experiedEndDateOne");
     const experiedDescriptionOne = formData.get("experiedDescriptionOne");
     const experiedOrganizationTwo = formData.get("experiedOrganizationTwo");
     const experiedDesignationTwo = formData.get("experiedDesignationTwo");
-    const experiedOrganizationAddressTwo = formData.get("experiedOrganizationAddressTwo");
-    const experiedStartDateTwoForm = formData.get("experiedStartDateTwo"); 
-    const experiedStartDateTwo = new Date(experiedStartDateTwoForm)
-    const experiedEndDateTwoForm = formData.get("experiedEndDateTwo");
-    const experiedEndDateTwo = new Date(experiedEndDateTwoForm);
+    const experiedOrganizationAddressTwo = formData.get(
+      "experiedOrganizationAddressTwo"
+    );
+    const experiedStartDateTwo = formData.get("experiedStartDateTwo");
+    const experiedEndDateTwo = formData.get("experiedEndDateTwo");
     const experiedDescriptionTwo = formData.get("experiedDescriptionTwo");
     const experiedOrganizationThree = formData.get("experiedOrganizationThree");
     const experiedDesignationThree = formData.get("experiedDesignationThree");
-    const experiedOrganizationAddressThree = formData.get("experiedOrganizationAddressThree");
-    const experiedStartDateThreeForm = formData.get("experiedStartDateThree");
-    const experiedStartDateThree = new Date(experiedStartDateThreeForm); 
-    const experiedEndDateThreeForm = formData.get("experiedEndDateThree");
-    const experiedEndDateThree = new Date(experiedEndDateThreeForm)
+    const experiedOrganizationAddressThree = formData.get(
+      "experiedOrganizationAddressThree"
+    );
+    const experiedStartDateThree = formData.get("experiedStartDateThree");
+    const experiedEndDateThree = formData.get("experiedEndDateThree");
     const experiedDescriptionThree = formData.get("experiedDescriptionThree");
     const experiedOrganizationFour = formData.get("experiedOrganizationFour");
     const experiedDesignationFour = formData.get("experiedDesignationFour");
-    const experiedOrganizationAddressFour = formData.get("experiedOrganizationAddressFour");
-    const experiedStartDateFourForm = formData.get("experiedStartDateFour"); 
-    const experiedStartDateFour = new Date(experiedStartDateFourForm);
-    const experiedEndDateFourForm = formData.get("experiedEndDateFour");
-    const experiedEndDateFour = new Date(experiedEndDateFourForm)
+    const experiedOrganizationAddressFour = formData.get(
+      "experiedOrganizationAddressFour"
+    );
+    const experiedStartDateFour = formData.get("experiedStartDateFour");
+    const experiedEndDateFour = formData.get("experiedEndDateFour");
     const experiedDescriptionFour = formData.get("experiedDescriptionFour");
-    const editId = formData.get('editId');
+    const editId = formData.get("editId");
     // route handler
     console.log(editId);
-   const data =  await Register.findByIdAndUpdate(editId, {
-    studentCategory,
-      name,
-      fatherName,
-      motherName,
-      dateOfBirth,
-      nationality,
-      religion,
-      gender,
-      nid,
-      marrital,
-      bloodGroup,
-      mobileNo,
-      homeMobileNo,
-      email,
-      physicalChallenged,
-      ethonicGroup,
-      presentVillage,
-      presentDistrict,
-      presentUpazila,
-      presentPostOffice,
-      presentPostCode,
-      permanentVillage,
-      permanentDistrict,
-      permanentUpazila,
-      permanentPostOffice,
-      permanentPostCode,
-      homeVillage,
-      homeDistrict,
-      homeUpazila,
-      homePostOffice,
-      homePostCode,
-      sscExamName,
-      sscBoard,
-      sscRoll,
-      sscResult,
-      sscGroup,
-      sscPassingYear,
-      hseExamName,
-      hscBoard,
-      hscRoll,
-      hscResult,
-      hscGroup,
-      hscPassingYear,
-      graduationName,
-      graduationSubject,
-      graduationVersity,
-      graduationResult,
-      graduationPassingYear,
-      graduationCourseDuration,
-      masterName,
-      masterSubject,
-      masterUniversity,
-      masterResult,
-      masterPassingYear,
-      masterCourseDuration,
-      otherCourseName,
-      otherCourseSubject,
-      otherCourseUniversity,
-      otherCourseResult,
-      otherPassingYear,
-      otherCourseDuration,
-      experiedOrganizationOne,
-      experiedDesignationOne,
-      experiedOrganizationAddressOne,
-      experiedStartDateOne,
-      experiedEndDateOne,
-      experiedDescriptionOne,
-      experiedOrganizationTwo,
-      experiedDesignationTwo,
-      experiedOrganizationAddressTwo,
-      experiedStartDateTwo,
-      experiedEndDateTwo,
-      experiedDescriptionTwo,
-      experiedOrganizationThree,
-      experiedDesignationThree,
-      experiedOrganizationAddressThree,
-      experiedStartDateThree,
-      experiedEndDateThree,
-      experiedDescriptionThree,
-      experiedOrganizationFour,
-      experiedDesignationFour,
-      experiedOrganizationAddressFour,
-      experiedStartDateFour,
-      experiedEndDateFour,
-      experiedDescriptionFour,
-   }, { new: true, runValidators: true });
-    return NextResponse.json({ message: "Update successful", data}, { status: 200 })
+    const data = await Register.findByIdAndUpdate(
+      editId,
+      {
+        studentCategory,
+        name,
+        fatherName,
+        motherName,
+        dateOfBirth,
+        nationality,
+        religion,
+        gender,
+        nid,
+        marrital,
+        bloodGroup,
+        mobileNo,
+        homeMobileNo,
+        email,
+        physicalChallenged,
+        ethonicGroup,
+        presentVillage,
+        presentDistrict,
+        presentUpazila,
+        presentPostOffice,
+        presentPostCode,
+        permanentVillage,
+        permanentDistrict,
+        permanentUpazila,
+        permanentPostOffice,
+        permanentPostCode,
+        homeVillage,
+        homeDistrict,
+        homeUpazila,
+        homePostOffice,
+        homePostCode,
+        sscExamName,
+        sscBoard,
+        sscRoll,
+        sscInstitute,
+        sscResult,
+        sscGroup,
+        sscPassingYear,
+        hseExamName,
+        hscBoard,
+        hscRoll,
+        hscInstitute,
+        hscResult,
+        hscGroup,
+        hscPassingYear,
+        graduationName,
+        graduationSubject,
+        graduationVersity,
+        graduationResult,
+        graduationPassingYear,
+        graduationCourseDuration,
+        masterName,
+        masterSubject,
+        masterUniversity,
+        masterResult,
+        masterPassingYear,
+        masterCourseDuration,
+        otherCourseName,
+        otherCourseSubject,
+        otherCourseUniversity,
+        otherCourseResult,
+        otherPassingYear,
+        otherCourseDuration,
+        experiedOrganizationOne,
+        experiedDesignationOne,
+        experiedOrganizationAddressOne,
+        experiedStartDateOne,
+        experiedEndDateOne,
+        experiedDescriptionOne,
+        experiedOrganizationTwo,
+        experiedDesignationTwo,
+        experiedOrganizationAddressTwo,
+        experiedStartDateTwo,
+        experiedEndDateTwo,
+        experiedDescriptionTwo,
+        experiedOrganizationThree,
+        experiedDesignationThree,
+        experiedOrganizationAddressThree,
+        experiedStartDateThree,
+        experiedEndDateThree,
+        experiedDescriptionThree,
+        experiedOrganizationFour,
+        experiedDesignationFour,
+        experiedOrganizationAddressFour,
+        experiedStartDateFour,
+        experiedEndDateFour,
+        experiedDescriptionFour,
+      },
+      { new: true, runValidators: true }
+    );
+    return NextResponse.json(
+      { message: "Update successful", data },
+      { status: 200 }
+    );
   } catch (err) {
-    console.error(err)
-    return NextResponse.json({ mgs: err.message }, {
-      status: 500,
-    });
+    console.error(err);
+    return NextResponse.json(
+      { mgs: err.message },
+      {
+        status: 500,
+      }
+    );
   }
-}
+};

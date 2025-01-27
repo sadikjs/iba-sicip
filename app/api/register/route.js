@@ -12,10 +12,13 @@ await dbConnect();
 //Get request
 export const GET = async (req, res) => {
   const images = await Register.find({});
-  return NextResponse.json({ image: images, total: images.length }, {
-    status: 200
-  })
-}
+  return NextResponse.json(
+    { image: images, total: images.length },
+    {
+      status: 200,
+    }
+  );
+};
 
 //post request
 export const POST = async (request) => {
@@ -29,8 +32,7 @@ export const POST = async (request) => {
     const fatherName = formData.get("fatherName");
     const motherName = formData.get("motherName");
     const dateOfBirthForm = formData.get("dateOfBirth");
-    const dateOfBirth = new Date(dateOfBirthForm)
-
+    const dateOfBirth = new Date(dateOfBirthForm);
     const nationality = formData.get("nationality");
     const religion = formData.get("religion");
     const gender = formData.get("gender");
@@ -61,12 +63,14 @@ export const POST = async (request) => {
     const sscExamName = formData.get("sscExamName");
     const sscBoard = formData.get("sscBoard");
     const sscRoll = formData.get("sscRoll");
+    const sscInstitute = formData.get("sscInstitute");
     const sscResult = formData.get("sscResult");
     const sscGroup = formData.get("sscGroup");
     const sscPassingYear = formData.get("sscPassingYear");
     const hseExamName = formData.get("hseExamName");
     const hscBoard = formData.get("hscBoard");
     const hscRoll = formData.get("hscRoll");
+    const hscInstitute = formData.get("hscInstitute");
     const hscResult = formData.get("hscResult");
     const hscGroup = formData.get("hscGroup");
     const hscPassingYear = formData.get("hscPassingYear");
@@ -90,54 +94,51 @@ export const POST = async (request) => {
     const otherCourseDuration = formData.get("otherCourseDuration");
     const experiedOrganizationOne = formData.get("experiedOrganizationOne");
     const experiedDesignationOne = formData.get("experiedDesignationOne");
-    const experiedOrganizationAddressOne = formData.get("experiedOrganizationAddressOne");
-
-    const experiedStartDateOneForm = formData.get("experiedStartDateOne")
-    const experiedStartDateOne = new Date(experiedStartDateOneForm)
-    const experiedEndDateOneForm = formData.get("experiedEndDateOne")
-    const experiedEndDateOne = new Date(experiedEndDateOneForm)
+    const experiedOrganizationAddressOne = formData.get(
+      "experiedOrganizationAddressOne"
+    );
+    const experiedStartDateOne = formData.get("experiedStartDateOne");
+    const experiedEndDateOne = formData.get("experiedEndDateOne");
     const oneExperienceDay = formData.get("oneExperienceDay");
-
     const experiedDescriptionOne = formData.get("experiedDescriptionOne");
     const experiedOrganizationTwo = formData.get("experiedOrganizationTwo");
     const experiedDesignationTwo = formData.get("experiedDesignationTwo");
-    const experiedOrganizationAddressTwo = formData.get("experiedOrganizationAddressTwo");
-
-    const experiedStartDateTwoForm = formData.get("experiedStartDateTwo"); 
-    const experiedStartDateTwo = new Date(experiedStartDateTwoForm)
-    const experiedEndDateTwoForm = formData.get("experiedEndDateTwo");
-    const experiedEndDateTwo = new Date(experiedEndDateTwoForm);
+    const experiedOrganizationAddressTwo = formData.get(
+      "experiedOrganizationAddressTwo"
+    );
+    const experiedStartDateTwo = formData.get("experiedStartDateTwo");
+    const experiedEndDateTwo = formData.get("experiedEndDateTwo");
     const twoExperienceDay = formData.get("twoExperienceDay");
-
     const experiedDescriptionTwo = formData.get("experiedDescriptionTwo");
     const experiedOrganizationThree = formData.get("experiedOrganizationThree");
     const experiedDesignationThree = formData.get("experiedDesignationThree");
-    const experiedOrganizationAddressThree = formData.get("experiedOrganizationAddressThree");
-
-    const experiedStartDateThreeForm = formData.get("experiedStartDateThree");
-    const experiedStartDateThree = new Date(experiedStartDateThreeForm); 
-    const experiedEndDateThreeForm = formData.get("experiedEndDateThree");
-    const experiedEndDateThree = new Date(experiedEndDateThreeForm)
+    const experiedOrganizationAddressThree = formData.get(
+      "experiedOrganizationAddressThree"
+    );
+    const experiedStartDateThree = formData.get("experiedStartDateThree");
+    const experiedEndDateThree = formData.get("experiedEndDateThree");
     const threeExperienceDay = formData.get("threeExperienceDay");
-   
     const experiedDescriptionThree = formData.get("experiedDescriptionThree");
     const experiedOrganizationFour = formData.get("experiedOrganizationFour");
     const experiedDesignationFour = formData.get("experiedDesignationFour");
-    const experiedOrganizationAddressFour = formData.get("experiedOrganizationAddressFour");
-    
-    const experiedStartDateFourForm = formData.get("experiedStartDateFour"); 
-    const experiedStartDateFour = new Date(experiedStartDateFourForm);
-    const experiedEndDateFourForm = formData.get("experiedEndDateFour");
-    const experiedEndDateFour = new Date(experiedEndDateFourForm)
+    const experiedOrganizationAddressFour = formData.get(
+      "experiedOrganizationAddressFour"
+    );
+    const experiedStartDateFour = formData.get("experiedStartDateFour");
+    const experiedEndDateFour = formData.get("experiedEndDateFour");
     const fourExperienceDay = formData.get("fourExperienceDay");
-
     const experiedDescriptionFour = formData.get("experiedDescriptionFour");
     const profilePicture = formData.get("profilePicture");
     const signature = formData.get("signature");
-    const dataProfile = await cloudinaryProfileUpload(profilePicture, "iba-sicip");
-    const dataSignature = await cloudinarySignatureUpload(signature, "iba-signature")
-    const hashPassword = await bcrypt.hash(password, 5)
-    console.log(oneExperienceDay);
+    const dataProfile = await cloudinaryProfileUpload(
+      profilePicture,
+      "iba-sicip"
+    );
+    const dataSignature = await cloudinarySignatureUpload(
+      signature,
+      "iba-signature"
+    );
+    const hashPassword = await bcrypt.hash(password, 5);
     const upload = await Register.create({
       serialNo,
       roll,
@@ -177,12 +178,14 @@ export const POST = async (request) => {
       sscExamName,
       sscBoard,
       sscRoll,
+      sscInstitute,
       sscResult,
       sscGroup,
       sscPassingYear,
       hseExamName,
       hscBoard,
       hscRoll,
+      hscInstitute,
       hscResult,
       hscGroup,
       hscPassingYear,
@@ -235,11 +238,14 @@ export const POST = async (request) => {
       profilePicture: dataProfile?.secure_url,
       profilePublicId: dataProfile?.public_id,
       signature: dataSignature?.secure_url,
-      signaturePublicId: dataSignature?.public_id
-    })
-    return NextResponse.json({ message: "Upload successful", data: upload }, { status: 200 })
+      signaturePublicId: dataSignature?.public_id,
+    });
+    return NextResponse.json(
+      { message: "Upload successful", data: upload },
+      { status: 200 }
+    );
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ msg: error.message }, { status: 500 })
+    return NextResponse.json({ msg: error.message }, { status: 500 });
   }
-}
+};
