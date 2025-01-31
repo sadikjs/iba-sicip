@@ -347,7 +347,7 @@ registerSchema.pre("save", async function (next) {
         { new: true, upsert: true } // Create if not exists
       );
       // Assign the incremented value to the userId field
-      this.roll = counter.counter;
+      this.roll = counter.counter + 1000;
     } catch (err) {
       next(err); // Pass error to the next middleware
     }

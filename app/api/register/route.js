@@ -20,6 +20,7 @@ export const GET = async (req, res) => {
   );
 };
 
+const sum = 1000;
 //post request
 export const POST = async (request) => {
   try {

@@ -1347,7 +1347,6 @@ const EditRegister = ({ getUser, editId }) => {
                           <FormControl>
                             <Input
                               type="number"
-                              step="0.1"
                               placeholder="Enter CGPA"
                               {...field}
                             />
@@ -1590,7 +1589,6 @@ const EditRegister = ({ getUser, editId }) => {
                           <FormControl>
                             <Input
                               type="number"
-                              step="0.1"
                               placeholder="Enter CGPA"
                               {...field}
                             />
@@ -1814,7 +1812,6 @@ const EditRegister = ({ getUser, editId }) => {
                           <FormControl>
                             <Input
                               type="number"
-                              step="0.1"
                               placeholder="Enter CGPA"
                               {...field}
                             />
@@ -2019,7 +2016,6 @@ const EditRegister = ({ getUser, editId }) => {
                           <FormControl>
                             <Input
                               type="number"
-                              step="0.1"
                               placeholder="Enter CGPA"
                               {...field}
                             />
@@ -2217,7 +2213,6 @@ const EditRegister = ({ getUser, editId }) => {
                             <FormControl>
                               <Input
                                 type="number"
-                                step="0.1"
                                 placeholder="Enter CGPA"
                                 {...field}
                               />
