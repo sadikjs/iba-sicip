@@ -336,6 +336,7 @@ const Register = () => {
         "experiedDescriptionFour",
         values.experiedDescriptionFour
       );
+
       formData.append("profilePicture", profileImage);
       formData.append("signature", signature);
       const response = await fetch("/api/register", {

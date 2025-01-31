@@ -2,28 +2,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/service/dbConnect";
 import bcrypt from "bcryptjs";
+import fs from "fs";
+import path from "path";
 
 //Internal import
 import Register from "@/model/register-model";
-import { cloudinaryProfileUpload } from "@/lib/cloudinary-upload";
-import { cloudinarySignatureUpload } from "@/lib/cloudinary-upload-signature";
 
-await dbConnect();
-//Get request
-export const GET = async (req, res) => {
-  const images = await Register.find({});
-  return NextResponse.json(
-    { image: images, total: images.length },
-    {
-      status: 200,
-    }
-  );
+// Disable default body parsing
+export const config = {
+  api: { bodyParser: false },
 };
 
-const sum = 1000;
 //post request
 export const POST = async (request) => {
   try {
+    await dbConnect();
     const formData = await request.formData();
     const serialNo = formData.get("serialNo");
     const roll = formData.get("roll");
@@ -129,17 +122,24 @@ export const POST = async (request) => {
     const experiedEndDateFour = formData.get("experiedEndDateFour");
     const fourExperienceDay = formData.get("fourExperienceDay");
     const experiedDescriptionFour = formData.get("experiedDescriptionFour");
-    const profilePicture = formData.get("profilePicture");
+    const profile = formData.get("profilePicture");
     const signature = formData.get("signature");
-    const dataProfile = await cloudinaryProfileUpload(
-      profilePicture,
-      "iba-sicip"
-    );
-    const dataSignature = await cloudinarySignatureUpload(
-      signature,
-      "iba-signature"
-    );
+
     const hashPassword = await bcrypt.hash(password, 5);
+    //uploader
+    const uploadDir = "./public/uploads";
+    if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+
+    // 📌 Save Profile Picture
+    const profileExt = path.extname(profile.name);
+    const profilePath = `${uploadDir}/profilePictures/${mobileNo}_profile${profileExt}`;
+    fs.writeFileSync(profilePath, Buffer.from(await profile.arrayBuffer()));
+
+    // 📌 Save Signature
+    const signatureExt = path.extname(signature.name);
+    const signaturePath = `${uploadDir}/signatures/${mobileNo}_signature${signatureExt}`;
+    fs.writeFileSync(signaturePath, Buffer.from(await signature.arrayBuffer()));
+
     const upload = await Register.create({
       serialNo,
       roll,
@@ -236,10 +236,8 @@ export const POST = async (request) => {
       experiedEndDateFour,
       fourExperienceTotalDays: fourExperienceDay,
       experiedDescriptionFour,
-      profilePicture: dataProfile?.secure_url,
-      profilePublicId: dataProfile?.public_id,
-      signature: dataSignature?.secure_url,
-      signaturePublicId: dataSignature?.public_id,
+      profilePicture: `/uploads/profilePictures/${mobileNo}_profile${profileExt}`,
+      signature: `/uploads/signatures/${mobileNo}_signature${signatureExt}`,
     });
     return NextResponse.json(
       { message: "Upload successful", data: upload },
@@ -249,4 +247,16 @@ export const POST = async (request) => {
     console.error(error);
     return NextResponse.json({ msg: error.message }, { status: 500 });
   }
+};
+
+//Get request
+export const GET = async (req, res) => {
+  await dbConnect();
+  const images = await Register.find({});
+  return NextResponse.json(
+    { image: images, total: images.length },
+    {
+      status: 200,
+    }
+  );
 };
