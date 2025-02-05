@@ -1,4 +1,4 @@
-// lib/mongodb.js
+// lib/mongodb.js something wrong have
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGO_CONNECT_STRING;
@@ -29,4 +29,4 @@ async function dbConnect() {
   return cached.conn;
 }
 
-export default dbConnect
+export default dbConnect;
