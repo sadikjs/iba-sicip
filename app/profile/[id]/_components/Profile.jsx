@@ -3,15 +3,17 @@ import Image from "next/image";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import bannerImage from "@/public/assets/heading/Heading.png";
-import { Roboto_Slab } from "next/font/google";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 //font
-export const roboto_slab = Roboto_Slab({
+import { Inter } from "next/font/google";
+
+// Load Inter font with specific options
+const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
-  style: ["normal"],
-  weight: ["400"],
+  weight: ["400", "600", "700"], // Customize weights
+  variable: "--font-inter", // Define a CSS variable for easy use
+  display: "swap", // Ensures a smooth loading experience
 });
 
 const Profile = ({ id }) => {
@@ -89,7 +91,7 @@ const Profile = ({ id }) => {
       </button>
       <div
         id="pdfContent"
-        className={`w-11/12 flex flex-col justify-center items-center py-6 ${roboto_slab.className}`}
+        className={`w-11/12 flex flex-col justify-center items-center py-6 ${inter.className}`}
       >
         <div className="w-11/12 flex justify-center items-center">
           <Image

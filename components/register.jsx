@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Roboto_Slab } from "next/font/google";
 import { toast } from "sonner";
 import axios from "axios";
 import { differenceInDays } from "date-fns";
@@ -32,12 +31,13 @@ import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 
-//font
-export const roboto_slab = Roboto_Slab({
+import { Inter } from "next/font/google";
+// Load Inter font with specific options
+const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
-  style: ["normal"],
-  weight: ["400"],
+  weight: ["400", "600", "700"], // Customize weights
+  variable: "--font-inter", // Define a CSS variable for easy use
+  display: "swap", // Ensures a smooth loading experience
 });
 
 //internal library
@@ -361,8 +361,8 @@ const Register = () => {
         w-screen min-h-screen flex flex-col justify-center items-center`}
     >
       <div
-        className="w-4/5 bg-white flex flex-col justify-center items-center
-            my-10 rounded-sm min-h-screen border border-gray-300 shadow-md"
+        className={`${inter.className} w-4/5 bg-white flex flex-col justify-center items-center
+            my-10 rounded-sm min-h-screen border border-gray-300 shadow-md`}
       >
         <div className="w-11/12 z-0 relative p-8 my-10  flex flex-col justify-center border border-gray-300 rounded-md">
           <div className="w-[96%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg">

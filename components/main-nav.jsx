@@ -22,7 +22,6 @@ export function MainNav({ items, children }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [loginSession, setLoginSession] = useState(null);
   const [loggedInUser, setLoggedInUser] = useState(null);
-  console.log("main nav console", loggedInUser);
   useEffect(() => {
     setLoginSession(session);
     async function fetchMe() {

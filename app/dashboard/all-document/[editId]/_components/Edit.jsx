@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Roboto_Slab } from "next/font/google";
 import { toast } from "sonner";
 import { format } from "date-fns";
 //internal package
@@ -28,14 +27,6 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-
-//font
-export const roboto_slab = Roboto_Slab({
-  subsets: ["latin"],
-  display: "swap",
-  style: ["normal"],
-  weight: ["400"],
-});
 
 //internal library
 import { editFormSchema } from "@/lib/editFormSchema";

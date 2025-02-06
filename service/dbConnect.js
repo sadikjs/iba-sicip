@@ -1,12 +1,25 @@
 import mongoose from "mongoose";
-const dbConnect = async () => {
-  try {
-    const con = await mongoose.connect(process.env.MONGO_CONNECT_STRING);
-    console.log("db connection successfully");
-    return con;
-  } catch (error) {
-    console.log(error.message);
+const MONGODB_URI = process.env.MONGO_CONNECT_STRING;
+
+if (!MONGODB_URI) {
+  throw new Error("❌ MongoDB connection string is missing in .env.local");
+}
+
+let cached = global.mongoose || { conn: null, promise: null };
+async function dbConnect() {
+  if (cached.conn) return cached.conn;
+
+  if (!cached.promise) {
+    cached.promise = mongoose
+      .connect(MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then((mongoose) => mongoose);
   }
-};
+
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
 
 export default dbConnect;
