@@ -616,10 +616,15 @@ const Register = () => {
                         Mobile Number{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
-                        <Input type="text" {...field} />
-                      </FormControl>
-                      <FormMessage />
+                      <div className="w-2/3 flex flex-col ">
+                        <FormControl>
+                          <Input type="text" {...field} />
+                        </FormControl>
+                        <FormDescription className="text-red-800 text-xs">
+                          Please enter here a valid Bangladeshi mobile number.
+                        </FormDescription>
+                        <FormMessage />
+                      </div>
                     </FormItem>
                   )}
                 />
@@ -1445,6 +1450,9 @@ const Register = () => {
                             </Select>
                           </FormControl>
                         )}
+                        <FormDescription className="text-red-800 text-xs">
+                          Result must be between 3.00 and 5.00
+                        </FormDescription>
                         <Button
                           className="w-32 mt-0.5 border border-box border-gray-400"
                           type="button"
@@ -1688,6 +1696,9 @@ const Register = () => {
                             </Select>
                           </FormControl>
                         )}
+                        <FormDescription className="text-red-800 text-xs">
+                          Result must be between 3.00 and 5.00
+                        </FormDescription>
                         <Button
                           className="w-32 mt-0.5 border border-box border-gray-400"
                           type="button"
@@ -1912,6 +1923,9 @@ const Register = () => {
                             </Select>
                           </FormControl>
                         )}
+                        <FormDescription className="text-red-800 text-xs">
+                          Result must be between 2.50 and 4.00
+                        </FormDescription>
                         <Button
                           className="w-32 mt-0.5 border border-box border-gray-400"
                           type="button"

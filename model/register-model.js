@@ -48,6 +48,7 @@ const registerSchema = new Schema({
   },
   mobileNo: {
     type: String,
+    unique: true,
   },
   homeMobileNo: {
     type: String,

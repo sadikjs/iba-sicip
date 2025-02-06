@@ -3,8 +3,6 @@ import { z } from "zod";
 import { subYears } from "date-fns";
 //regex
 const specificEmailRegex = /^[a-zA-Z0-9._%+-]+@(gmail|yahoo|hotmail)\.com$/;
-const numericRegex = /^(3(\.[0-9])?|4(\.[0-9])?|5(\.0)?)$/;
-const numericGraduactionRegex = /^(2\.[5-9]|[3-3]\.[0-9]|4(\.0)?)$/;
 
 //register form schema
 export const formSchema = z.object({
@@ -50,11 +48,11 @@ export const formSchema = z.object({
   bloodGroup: z.string().min(2, { message: "Please blood group enter here" }),
   mobileNo: z.string().regex(/^01[3-9]\d{8}$/, {
     message:
-      "Invalid Bangladeshi mobile number. Must start with 01 and have 11 digits.",
+      "Please enter here a valid Bangladeshi mobile number. Must start with 01 and have 11 digits.",
   }),
   homeMobileNo: z.string().regex(/^01[3-9]\d{8}$/, {
     message:
-      "Invalid Bangladeshi mobile number. Must start with 01 and have 11 digits.",
+      "Please enter here a valid Bangladeshi mobile number. Must start with 01 and have 11 digits.",
   }),
   email: z
     .string()
@@ -118,8 +116,8 @@ export const formSchema = z.object({
     .max(15, { message: "SSC roll number above 15 character not allow!" }),
   sscInstitute: z.string(),
   sscResult: z.union([
-    z.string().regex(numericRegex, {
-      message: "Value must be between 3 and 5 with a step of 0.1",
+    z.string().regex(/^[3-5]\.\d{2}$/, "Result must be between 3.00 and 5.00", {
+      message: "Value must be between 3 and 5 with a step of 0.01",
     }),
     z.string().regex(/^(firstDivision|secondDivision)$/, {
       message: "Value must be '1st Division' or '2nd Division'",
@@ -137,8 +135,8 @@ export const formSchema = z.object({
   hscRoll: z.string().min(4, { message: "HSC/ roll is required!" }),
   hscInstitute: z.string(),
   hscResult: z.union([
-    z.string().regex(numericRegex, {
-      message: "Value must be between 3 and 5 with a step of 0.1",
+    z.string().regex(/^[3-5]\.\d{2}$/, "Result must be between 3.00 and 5.00", {
+      message: "Value must be between 3 and 5 with a step of 0.01",
     }),
     z.string().regex(/^(firstDivision|secondDivision)$/, {
       message: "Value must be '1st Division' or '2nd Division'",
@@ -160,9 +158,15 @@ export const formSchema = z.object({
     .string()
     .min(2, { message: "University/Equivalent name is required!" }),
   graduationResult: z.union([
-    z.string().regex(numericGraduactionRegex, {
-      message: "Value must be between 2.5 and 4 with a step of 0.1",
-    }),
+    z
+      .string()
+      .regex(
+        /^(2\.[5-9][0-9]|3\.\d{2}|4\.00)$/,
+        "Result must be between 2.50 and 4.00",
+        {
+          message: "Value must be between 2.5 and 4 with a step of 0.1",
+        }
+      ),
     z.string().regex(/^(firstDivision|secondDivision)$/, {
       message: "Value must be '1st Division' or '2nd Division'",
     }),
