@@ -118,6 +118,17 @@ export function MainNav({ items, children }) {
             )}
           </DropdownMenuContent>
         </DropdownMenu>
+        {loginSession && (
+          <Link
+            className="cursor-pointer"
+            href="#"
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Logout
+          </Link>
+        )}
         <Button
           className="flex items-center space-x-2 lg:hidden"
           onClick={() => setShowMobileMenu(!showMobileMenu)}

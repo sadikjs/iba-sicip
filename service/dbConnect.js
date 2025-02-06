@@ -1,32 +1,12 @@
-// lib/mongodb.js something wrong have
 import mongoose from "mongoose";
-
-const MONGODB_URI = process.env.MONGO_CONNECT_STRING;
-
-if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable.");
-}
-
-let cached = global.mongoose;
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
-
-async function dbConnect() {
-  if (cached.conn) {
-    return cached.conn;
+const dbConnect = async () => {
+  try {
+    const con = await mongoose.connect(process.env.MONGO_CONNECT_STRING);
+    console.log("db connection successfully");
+    return con;
+  } catch (error) {
+    console.log(error.message);
   }
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  }
-
-  cached.conn = await cached.promise;
-  return cached.conn;
-}
+};
 
 export default dbConnect;
