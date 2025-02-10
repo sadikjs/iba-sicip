@@ -47,5 +47,6 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       },
     }),
   ],
-  trustHost: true,
+  secret: process.env.NEXTAUTH_SECRET,
+  trustedHosts: ["www.sadikjs.com", "sadikjs.com"],
 });
