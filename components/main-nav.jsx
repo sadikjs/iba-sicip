@@ -30,12 +30,11 @@ export function MainNav({ items, children }) {
         const data = await response.json();
         setLoggedInUser(data);
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     }
     fetchMe();
   }, [session]);
-
   return (
     <>
       <div className="flex gap-6 lg:gap-10">
@@ -90,9 +89,9 @@ export function MainNav({ items, children }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56 mt-4">
             <DropdownMenuItem className="cursor-pointer" asChild>
-              <Link href={`/profile/${loggedInUser?.id}`}>Profile</Link>
+              <Link href={`/profile/${loggedInUser?.user.id}`}>Profile</Link>
             </DropdownMenuItem>
-            {loggedInUser?.role === "instructor" && (
+            {loggedInUser?.user.role === "instructor" && (
               <DropdownMenuItem className="cursor-pointer" asChild>
                 <Link href="/dashboard">Dashboard</Link>
               </DropdownMenuItem>

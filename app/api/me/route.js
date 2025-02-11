@@ -13,15 +13,8 @@ export const GET = async (req, res) => {
   await dbConnect();
   try {
     const user = await getUserByEmail(session?.user?.email);
-    return new NextResponse(JSON.stringify(user), {
-      status: 200,
-    });
+    return NextResponse.json({ user: user, status: 200 });
   } catch (err) {
-    return NextResponse.json(
-      { meg: err.message },
-      {
-        status: 500,
-      }
-    );
+    return NextResponse.json({ meg: err.message }, { status: 500 });
   }
 };

@@ -1,20 +1,18 @@
 import NextAuth from "next-auth";
 import bcrypt from "bcryptjs";
 import Register from "./model/register-model";
-import { authConfig } from "./auth.config";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 export const { auth, signIn, signOut, handlers } = NextAuth({
-  ...authConfig,
   providers: [
-    Credentials({
+    CredentialsProvider({
       async authorize(credentials) {
         if (credentials == null) return null;
         try {
           const user = await Register.findOne({
             email: credentials?.email,
           });
-          console.log(user);
+          console.log("login user", user);
           if (user) {
             const isMatch = await bcrypt.compare(
               credentials.password,
@@ -23,7 +21,6 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
             if (isMatch) {
               return user;
             } else {
-              console.error("password mismatch");
               throw new Error("Check your password");
             }
           } else {
@@ -48,5 +45,8 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  trustedHosts: ["www.sadikjs.com", "sadikjs.com"],
+  trustHost: true,
+  session: {
+    strategy: "jwt",
+  },
 });
