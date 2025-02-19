@@ -1,20 +1,18 @@
 import NextAuth from "next-auth";
 import bcrypt from "bcryptjs";
 import Register from "./model/register-model";
-import { authConfig } from "./auth.config";
-import Credentials from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import dbConnect from "./service/dbConnect";
 export const { auth, signIn, signOut, handlers } = NextAuth({
-  ...authConfig,
   providers: [
-    Credentials({
+    CredentialsProvider({
       async authorize(credentials) {
         if (credentials == null) return null;
         try {
+          await dbConnect();
           const user = await Register.findOne({
             email: credentials?.email,
           });
-          console.log(user);
           if (user) {
             const isMatch = await bcrypt.compare(
               credentials.password,
@@ -23,7 +21,6 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
             if (isMatch) {
               return user;
             } else {
-              console.error("password mismatch");
               throw new Error("Check your password");
             }
           } else {
@@ -35,18 +32,18 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
         }
       },
     }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
-    }),
   ],
+  session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
-  trustedHosts: ["www.sadikjs.com", "sadikjs.com"],
+  trustHost: true,
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) token.id = user._id;
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      return session;
+    },
+  },
 });

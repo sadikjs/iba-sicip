@@ -1,19 +1,42 @@
+// lib/mongodb.js (Database Connection Utility)
 import mongoose from "mongoose";
-const MONGODB_URI = process.env.MONGO_CONNECT_STRING;
 
-if (!MONGODB_URI) {
-  throw new Error("❌ MongoDB connection string is missing in .env.local");
+// 1. Get the MongoDB URI from environment variables (Recommended)
+const uri = process.env.MONGODB_URI;
+
+// 2. Caching for improved performance (Optional, but good practice)
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
-let cached = global.mongoose || { conn: null, promise: null };
 async function dbConnect() {
-  if (cached.conn) return cached.conn;
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => mongoose);
+  if (cached.conn) {
+    return cached.conn;
   }
 
-  cached.conn = await cached.promise;
+  if (!cached.promise) {
+    const opts = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      bufferCommands: false, // Disable command buffering in production
+      serverSelectionTimeoutMS: 5000, // Increase connection timeout if needed (in ms)
+      connectTimeoutMS: 10000, // Increase connection timeout
+    };
+
+    try {
+      cached.promise = mongoose.connect(uri, opts).then((mongoose) => {
+        return mongoose;
+      });
+
+      cached.conn = await cached.promise;
+    } catch (e) {
+      cached.promise = null;
+      throw e;
+    }
+  }
+
   return cached.conn;
 }
 

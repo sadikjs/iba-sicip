@@ -194,11 +194,12 @@ const Profile = ({ id }) => {
             <tr className="w-full flex flex-col justify-center items-center border-b border-slate-900">
               <td>
                 <Image
-                  src={data.data.profilePicture}
-                  alt="profile picture"
                   className="rounded-sm pt-2"
+                  src={data.data.profilePicture}
                   width={230}
                   height={270}
+                  alt="profile picture"
+                  unoptimized={true}
                 />
               </td>
               <td>Photo</td>
@@ -206,11 +207,12 @@ const Profile = ({ id }) => {
             <tr className="w-full flex flex-col justify-center items-center border-slate-900">
               <td>
                 <Image
-                  src={data.data.signature}
-                  alt="signature"
                   className="rounded-sm pt-1.5"
+                  src={data.data.signature}
                   width={220}
                   height={250}
+                  alt="signature"
+                  unoptimized={true}
                 />
               </td>
               <td>Signature</td>
