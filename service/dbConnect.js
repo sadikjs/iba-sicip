@@ -18,8 +18,6 @@ async function dbConnect() {
 
   if (!cached.promise) {
     const opts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       bufferCommands: false, // Disable command buffering in production
       serverSelectionTimeoutMS: 5000, // Increase connection timeout if needed (in ms)
       connectTimeoutMS: 10000, // Increase connection timeout
