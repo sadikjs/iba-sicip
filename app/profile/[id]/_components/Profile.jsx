@@ -20,7 +20,7 @@ const Profile = ({ id }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  console.log(data);
   useEffect(() => {
     const fetchUser = async () => {
       setIsLoading(true);
@@ -147,59 +147,59 @@ const Profile = ({ id }) => {
           </thead>
           <tbody className="w-1/3 flex flex-col">
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.name}</td>
+              <td className="p-1.5">{data.name}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.email}</td>
+              <td className="p-1.5">{data.email}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.mobileNo}</td>
+              <td className="p-1.5">{data.mobileNo}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.fatherName}</td>
+              <td className="p-1.5">{data.fatherName}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.motherName}</td>
+              <td className="p-1.5">{data.motherName}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
               <td className="p-1.5">
-                {data.data.dateOfBirth
-                  ? format(new Date(data.data.dateOfBirth), "PPP")
+                {data.dateOfBirth
+                  ? format(new Date(data.dateOfBirth), "PPP")
                   : "null"}
               </td>
             </tr>
             <tr className="w-full flex flex-row justify-start border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.gender}</td>
+              <td className="p-1.5">{data.gender}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.nationality}</td>
+              <td className="p-1.5">{data.nationality}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.nid}</td>
+              <td className="p-1.5">{data.nid}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.homeMobileNo}</td>
+              <td className="p-1.5">{data.homeMobileNo}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.permanentVillage}</td>
+              <td className="p-1.5">{data.permanentVillage}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-b border-slate-900">
-              <td className="p-1.5">{data.data.studentCategory}</td>
+              <td className="p-1.5">{data.studentCategory}</td>
             </tr>
             <tr className="w-full flex flex-row justify-start  border-x border-slate-900">
-              <td className="p-1.5">{data.data.createdOn}</td>
+              <td className="p-1.5">{data.createdOn}</td>
             </tr>
           </tbody>
           <tbody className="w-1/3 flex flex-col">
             <tr className="w-full flex flex-col justify-center items-center border-b border-slate-900">
               <td>
-                {data.data.profilePicture && (
+                {data.profilePicture && (
                   <Image
                     className="rounded-sm pt-2"
-                    src={data.data.profilePicture}
+                    src={data.profilePicture}
                     width={230}
                     height={270}
-                    alt={data.data.name}
+                    alt={data.name}
                   />
                 )}
               </td>
@@ -207,13 +207,13 @@ const Profile = ({ id }) => {
             </tr>
             <tr className="w-full flex flex-col justify-center items-center border-slate-900">
               <td>
-                {data.data.signature && (
+                {data.signature && (
                   <Image
                     className="rounded-sm pt-1.5"
-                    src={data.data.signature}
+                    src={data.signature}
                     width={220}
                     height={250}
-                    alt={data.data.name}
+                    alt={data.name}
                   />
                 )}
               </td>
@@ -244,91 +244,85 @@ const Profile = ({ id }) => {
           </thead>
           <tbody>
             <tr className="grid grid-cols-9">
-              <td className=" border-b border-slate-900">
-                {data.data.sscExamName}
+              <td className=" border-b border-slate-900">{data.sscExamName}</td>
+              <td className="border-l border-b border-slate-900">
+                {data.sscPassingYear}
               </td>
               <td className="border-l border-b border-slate-900">
-                {data.data.sscPassingYear}
-              </td>
-              <td className="border-l border-b border-slate-900">
-                {data.data.sscResult}
+                {data.sscResult}
               </td>
               <td className="col-span-3 text-center border-l border-b border-slate-900">
-                {data.data.sscGroup}
+                {data.sscGroup}
               </td>
               <td className=" col-span-3 text-center border-l border-b border-slate-900">
-                {data.data.sscInstitute}
+                {data.sscInstitute}
               </td>
             </tr>
             <tr className="grid grid-cols-9">
-              <td className="border-b border-slate-900">
-                {data.data.hseExamName}
+              <td className="border-b border-slate-900">{data.hseExamName}</td>
+              <td className="border-l border-b border-slate-900">
+                {data.hscPassingYear}
               </td>
               <td className="border-l border-b border-slate-900">
-                {data.data.hscPassingYear}
-              </td>
-              <td className="border-l border-b border-slate-900">
-                {data.data.hscResult}
+                {data.hscResult}
               </td>
               <td className="col-span-3 text-center border-l border-b border-slate-900">
-                {data.data.hscGroup}
+                {data.hscGroup}
               </td>
               <td className="col-span-3 text-center border-l border-b border-slate-900 ">
-                {data.data.hscInstitute}
+                {data.hscInstitute}
               </td>
             </tr>
             <tr className="grid grid-cols-9">
               <td className="border-b border-slate-900">
-                {data.data.graduationName}
+                {data.graduationName}
               </td>
               <td className="border-l border-b border-slate-900">
-                {data.data.graduationPassingYear}
+                {data.graduationPassingYear}
               </td>
               <td className="border-l border-b border-slate-900">
-                {data.data.graduationResult}
+                {data.graduationResult}
               </td>
               <td className="col-span-3 text-center border-l border-b border-slate-900">
-                {data.data.graduationSubject}
+                {data.graduationSubject}
               </td>
               <td className="col-span-3 text-center border-l border-b border-slate-900">
-                {data.data.graduationVersity}
+                {data.graduationVersity}
               </td>
             </tr>
-            {data.data.masterName && (
+            {data.masterName && (
               <tr className="grid grid-cols-9">
-                <td className="border-b border-slate-900">
-                  {data.data.masterName}
+                <td className="border-b border-slate-900">{data.masterName}</td>
+                <td className="border-l border-b border-slate-900">
+                  {data.masterPassingYear}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {data.data.masterPassingYear}
-                </td>
-                <td className="border-l border-b border-slate-900">
-                  {data.data.masterResult}
+                  {data.masterResult}
                 </td>
                 <td className="col-span-3 text-center border-l border-b border-slate-900">
-                  {data.data.masterSubject}
+                  {data.masterSubject}
                 </td>
                 <td className="col-span-3 text-center border-l border-b border-slate-900">
-                  {data.data.masterUniversity}
+                  {data.masterUniversity}
                 </td>
               </tr>
             )}
-            {data.data.otherCourseName && (
+            {data.otherCourseName && (
               <tr className="grid grid-cols-9">
                 <td className="border-b border-slate-900">
-                  {data.data.otherCourseName}
+                  {data.otherCourseName}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {data.data.otherPassingYear}
+                  {data.otherPassingYear}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {data.data.otherCourseResult}
+                  {data.otherCourseResult}
                 </td>
                 <td className="col-span-3 text-center border-l border-b border-slate-900">
-                  {data.data.otherCourseSubject}
+                  {data.otherCourseSubject}
                 </td>
                 <td className="col-span-3 text-center border-l border-b border-slate-900">
-                  {data.data.otherCourseUniversity}
+                  {data.otherCourseUniversity}
                 </td>
               </tr>
             )}
@@ -364,151 +358,122 @@ const Profile = ({ id }) => {
             </tr>
           </thead>
           <tbody>
-            {data.data.experiedOrganizationOne && (
+            {data.experiedOrganizationOne && (
               <tr className="grid grid-cols-12">
                 <td className="col-span-2 border-b border-slate-900">
-                  {data.data.experiedOrganizationOne}
+                  {data.experiedOrganizationOne}
                 </td>
                 <td className="col-span-1 border-l border-b border-slate-900">
-                  {data.data.experiedDesignationOne}
+                  {data.experiedDesignationOne}
                 </td>
                 <td className="col-span-2 border-l border-b border-slate-900">
-                  {data.data.experiedStartDateOne
-                    ? format(
-                        new Date(data.data.experiedStartDateOne),
-                        "yyyy-MM-dd"
-                      )
+                  {data.experiedStartDateOne
+                    ? format(new Date(data.experiedStartDateOne), "yyyy-MM-dd")
                     : null}
                 </td>
                 <td className="col-span-2 border-l border-b border-slate-900">
-                  {data.data.experiedEndDateOne
-                    ? format(
-                        new Date(data.data.experiedEndDateOne),
-                        "yyyy-MM-dd"
-                      )
+                  {data.experiedEndDateOne
+                    ? format(new Date(data.experiedEndDateOne), "yyyy-MM-dd")
                     : null}
                 </td>
                 <td className="col-span-3 text-center border-l border-b border-slate-900">
-                  {data.data.experiedDescriptionOne}
+                  {data.experiedDescriptionOne}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {data.data.oneExperienceTotalDays}
+                  {data.oneExperienceTotalDays}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {parseInt(data.data.oneExperienceTotalDays / 365).toPrecision(
-                    2
-                  )}
+                  {parseInt(data.oneExperienceTotalDays / 365).toPrecision(2)}
                 </td>
               </tr>
             )}
-            {data.data.experiedOrganizationTwo && (
+            {data.experiedOrganizationTwo && (
               <tr className="grid grid-cols-12">
                 <td className="col-span-2 border-b border-slate-900">
-                  {data.data.experiedOrganizationTwo}
+                  {data.experiedOrganizationTwo}
                 </td>
                 <td className="col-span-1 border-l border-b border-slate-900">
-                  {data.data.experiedDesignationTwo}
+                  {data.experiedDesignationTwo}
                 </td>
                 <td className="col-span-2 border-l border-b border-slate-900">
-                  {data.data.experiedStartDateTwo
-                    ? format(
-                        new Date(data.data.experiedStartDateTwo),
-                        "yyyy-MM-dd"
-                      )
+                  {data.experiedStartDateTwo
+                    ? format(new Date(data.experiedStartDateTwo), "yyyy-MM-dd")
                     : null}
                 </td>
                 <td className="col-span-2 border-l border-b border-slate-900">
-                  {data.data.experiedEndDateTwo
-                    ? format(
-                        new Date(data.data.experiedEndDateTwo),
-                        "yyyy-MM-dd"
-                      )
+                  {data.experiedEndDateTwo
+                    ? format(new Date(data.experiedEndDateTwo), "yyyy-MM-dd")
                     : null}
                 </td>
                 <td className="col-span-3 text-center border-l border-b border-slate-900">
-                  {data.data.experiedDescriptionTwo}
+                  {data.experiedDescriptionTwo}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {data.data.twoExperienceTotalDays}
+                  {data.twoExperienceTotalDays}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {parseInt(data.data.twoExperienceTotalDays / 365).toPrecision(
-                    2
-                  )}
+                  {parseInt(data.twoExperienceTotalDays / 365).toPrecision(2)}
                 </td>
               </tr>
             )}
-            {data.data.experiedOrganizationThree && (
+            {data.experiedOrganizationThree && (
               <tr className="grid grid-cols-12">
                 <td className="col-span-2 border-b border-slate-900">
-                  {data.data.experiedOrganizationThree}
+                  {data.experiedOrganizationThree}
                 </td>
                 <td className="col-span-1 border-l border-b border-slate-900">
-                  {data.data.experiedDesignationThree}
+                  {data.experiedDesignationThree}
                 </td>
                 <td className="col-span-2 border-l border-b border-slate-900">
-                  {data.data.experiedStartDateThree
+                  {data.experiedStartDateThree
                     ? format(
-                        new Date(data.data.experiedStartDateThree),
+                        new Date(data.experiedStartDateThree),
                         "yyyy-MM-dd"
                       )
                     : null}
                 </td>
                 <td className="col-span-2 border-l border-b border-slate-900">
-                  {data.data.experiedEndDateThree
-                    ? format(
-                        new Date(data.data.experiedEndDateThree),
-                        "yyyy-MM-dd"
-                      )
+                  {data.experiedEndDateThree
+                    ? format(new Date(data.experiedEndDateThree), "yyyy-MM-dd")
                     : null}
                 </td>
                 <td className="col-span-3 text-center border-l border-b border-slate-900">
-                  {data.data.experiedDescriptionThree}
+                  {data.experiedDescriptionThree}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {data.data.threeExperienceTotalDays}
+                  {data.threeExperienceTotalDays}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {parseInt(
-                    data.data.threeExperienceTotalDays / 365
-                  ).toPrecision(2)}
+                  {parseInt(data.threeExperienceTotalDays / 365).toPrecision(2)}
                 </td>
               </tr>
             )}
-            {data.data.experiedOrganizationFour && (
+            {data.experiedOrganizationFour && (
               <tr className="grid grid-cols-12">
                 <td className="col-span-2 border-b border-slate-900">
-                  {data.data.experiedOrganizationFour}
+                  {data.experiedOrganizationFour}
                 </td>
                 <td className="col-span-1 border-l border-b border-slate-900">
-                  {data.data.experiedDesignationFour}
+                  {data.experiedDesignationFour}
                 </td>
                 <td className="col-span-2 border-l border-b border-slate-900">
-                  {data.data.experiedStartDateFour
-                    ? format(
-                        new Date(data.data.experiedStartDateFour),
-                        "yyyy-MM-dd"
-                      )
+                  {data.experiedStartDateFour
+                    ? format(new Date(data.experiedStartDateFour), "yyyy-MM-dd")
                     : null}
                 </td>
                 <td className="col-span-2 border-l border-b border-slate-900">
-                  {data.data.experiedEndDateFour
-                    ? format(
-                        new Date(data.data.experiedEndDateFour),
-                        "yyyy-MM-dd"
-                      )
+                  {data.experiedEndDateFour
+                    ? format(new Date(data.experiedEndDateFour), "yyyy-MM-dd")
                     : null}
                 </td>
                 <td className="col-span-3 text-center border-l border-b border-slate-900">
-                  {data.data.experiedDescriptionFour}
+                  {data.experiedDescriptionFour}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {data.data.fourExperienceTotalDays}
+                  {data.fourExperienceTotalDays}
                 </td>
                 <td className="border-l border-b border-slate-900">
-                  {parseInt(
-                    data.data.fourExperienceTotalDays / 365
-                  ).toPrecision(2)}
+                  {parseInt(data.fourExperienceTotalDays / 365).toPrecision(2)}
                 </td>
               </tr>
             )}

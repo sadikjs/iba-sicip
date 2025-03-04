@@ -370,7 +370,7 @@ const Register = () => {
           </div>
           <Form {...form}>
             <form className="py-6" onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="w-11/12 z-0 relative p-8 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
+              <div className="w-11/12 z-0 relative pt-4 px-1 lg:p-8 m-auto  flex flex-col justify-center border border-gray-300 rounded-md">
                 <div className="w-[94%] z-10 absolute m-auto -top-2 bg-[#84B995] p-1 rounded-lg">
                   <p className="text-white text-xs font-bold">
                     Basic Information
@@ -392,12 +392,12 @@ const Register = () => {
                   control={form.control}
                   name="name"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Applicant&apos;s Name{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
@@ -408,12 +408,12 @@ const Register = () => {
                   control={form.control}
                   name="fatherName"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Father&apos;s Name{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
@@ -424,12 +424,12 @@ const Register = () => {
                   control={form.control}
                   name="motherName"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className=" w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Mother&apos;s Name{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
@@ -440,16 +440,16 @@ const Register = () => {
                   control={form.control}
                   name="dateOfBirth"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Date of Birth
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <div className="w-2/3 flex flex-col">
-                        <FormControl className="w-2/3">
+                      <div className="w-1/2 flex flex-col justify-center items-center lg:w-2/3">
+                        <FormControl className="w-full">
                           <Input type="date" {...field} />
                         </FormControl>
-                        <FormDescription className="text-red-800 text-xs">
+                        <FormDescription className="text-center lg:text-left text-red-800 text-xs">
                           Applicants age should be minimum 20 years and maximum
                           50 years
                         </FormDescription>
@@ -462,17 +462,16 @@ const Register = () => {
                   control={form.control}
                   name="nationality"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Nationality{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-1/2 lg:w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -491,16 +490,15 @@ const Register = () => {
                   control={form.control}
                   name="religion"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col pt-6 justify-center items-center lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Religion <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-1/2 lg:w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -523,16 +521,15 @@ const Register = () => {
                   control={form.control}
                   name="gender"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col pt-6 justify-center items-center lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Gender <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-1/2 lg:w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -550,12 +547,12 @@ const Register = () => {
                   control={form.control}
                   name="nid"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         National ID{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
@@ -566,17 +563,16 @@ const Register = () => {
                   control={form.control}
                   name="marrital"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Marrital Status{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-1/2 lg:w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -595,12 +591,12 @@ const Register = () => {
                   control={form.control}
                   name="bloodGroup"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Blood Group{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
@@ -611,16 +607,16 @@ const Register = () => {
                   control={form.control}
                   name="mobileNo"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Mobile Number{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <div className="w-2/3 flex flex-col ">
+                      <div className="w-1/2 lg:w-2/3 flex flex-col ">
                         <FormControl>
                           <Input type="text" {...field} />
                         </FormControl>
-                        <FormDescription className="text-red-800 text-xs">
+                        <FormDescription className="text-center text-red-800 text-xs lg:text-left">
                           Please enter here a valid Bangladeshi mobile number.
                         </FormDescription>
                         <FormMessage />
@@ -632,12 +628,12 @@ const Register = () => {
                   control={form.control}
                   name="homeMobileNo"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Home Mobile Number{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
@@ -648,15 +644,15 @@ const Register = () => {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Email <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <div className="flex flex-col w-2/3">
+                      <div className="w-1/2 flex flex-col lg:w-2/3">
                         <FormControl>
                           <Input type="email" {...field} />
                         </FormControl>
-                        <FormDescription className="text-red-800 text-xs">
+                        <FormDescription className="text-center text-red-800 text-xs lg:text-left">
                           Must be provide valid email address
                         </FormDescription>
                         <FormMessage />
@@ -668,11 +664,11 @@ const Register = () => {
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Password <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <Input type="text" {...field} />
                       </FormControl>
                       <FormMessage />
@@ -683,14 +679,14 @@ const Register = () => {
                   control={form.control}
                   name="physicalChallenged"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Physical Challenged{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <RadioGroup
-                          className="flex flex-row items-center gap-x-10"
+                          className="flex flex-row justify-center items-center gap-x-4 lg:gap-x-10 lg:justify-start lg: items-center"
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
@@ -698,13 +694,13 @@ const Register = () => {
                             <FormControl>
                               <RadioGroupItem value="yes" />
                             </FormControl>
-                            <FormLabel className="px-4">Yes</FormLabel>
+                            <FormLabel className="px-2 lg:px-4">Yes</FormLabel>
                           </FormItem>
                           <FormItem>
                             <FormControl>
                               <RadioGroupItem value="no" />
                             </FormControl>
-                            <FormLabel className="px-4">No</FormLabel>
+                            <FormLabel className="px-2 lg:px-4">No</FormLabel>
                           </FormItem>
                         </RadioGroup>
                       </FormControl>
@@ -716,14 +712,14 @@ const Register = () => {
                   control={form.control}
                   name="ethonicGroup"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Ethonic Group{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-1/2 lg:w-2/3">
                         <RadioGroup
-                          className="flex flex-row items-center gap-x-10"
+                          className="flex flex-row justify-center items-center gap-x-4 lg:gap-x-10 lg:justify-start lg:items-center"
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
@@ -731,13 +727,13 @@ const Register = () => {
                             <FormControl>
                               <RadioGroupItem value="yes" />
                             </FormControl>
-                            <FormLabel className="px-4">Yes</FormLabel>
+                            <FormLabel className="px-2 lg:px-4">Yes</FormLabel>
                           </FormItem>
                           <FormItem>
                             <FormControl>
                               <RadioGroupItem value="no" />
                             </FormControl>
-                            <FormLabel className="px-4">No</FormLabel>
+                            <FormLabel className="px-2 lg:px-4">No</FormLabel>
                           </FormItem>
                         </RadioGroup>
                       </FormControl>
@@ -749,12 +745,12 @@ const Register = () => {
                   control={form.control}
                   name="studentCategory"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-1/2 text-center lg:w-1/3 lg:text-right">
                         Student Category{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <div className="w-2/3 flex flex-col">
+                      <div className="w-1/2 flex flex-col justify-center items-center lg:w-2/3">
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
@@ -792,12 +788,12 @@ const Register = () => {
                   control={form.control}
                   name="presentVillage"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Village/Road/House{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <FormControl className="w-2/3">
+                      <FormControl className="w-2/3 lg:w-2/3">
                         <Textarea {...field} />
                       </FormControl>
                       <FormMessage />
@@ -808,16 +804,15 @@ const Register = () => {
                   control={form.control}
                   name="presentDistrict"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         District <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3 lg:w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -911,8 +906,8 @@ const Register = () => {
                   control={form.control}
                   name="presentUpazila"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Upazila/Thana{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -927,8 +922,8 @@ const Register = () => {
                   control={form.control}
                   name="presentPostOffice"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Post Office{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -943,8 +938,8 @@ const Register = () => {
                   control={form.control}
                   name="presentPostCode"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Post Code{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -966,8 +961,8 @@ const Register = () => {
                   name="permanentVillage"
                   control={form.control}
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Village/Road/House{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -982,16 +977,15 @@ const Register = () => {
                   control={form.control}
                   name="permanentDistrict"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         District <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1085,8 +1079,8 @@ const Register = () => {
                   control={form.control}
                   name="permanentUpazila"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Upazila/Thana{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1101,8 +1095,8 @@ const Register = () => {
                   control={form.control}
                   name="permanentPostOffice"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Post Office{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1117,8 +1111,8 @@ const Register = () => {
                   control={form.control}
                   name="permanentPostCode"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Post Code{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1138,8 +1132,8 @@ const Register = () => {
                   name="homeVillage"
                   control={form.control}
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Village/Road/House{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1154,16 +1148,15 @@ const Register = () => {
                   control={form.control}
                   name="homeDistrict"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         District <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1257,8 +1250,8 @@ const Register = () => {
                   control={form.control}
                   name="homeUpazila"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Upazila/Thana{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1273,8 +1266,8 @@ const Register = () => {
                   control={form.control}
                   name="homePostOffice"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Post Office{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1289,8 +1282,8 @@ const Register = () => {
                   control={form.control}
                   name="homePostCode"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Post Code{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1312,17 +1305,16 @@ const Register = () => {
                   name="sscExamName"
                   control={form.control}
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Examination{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1344,16 +1336,15 @@ const Register = () => {
                   name="sscBoard"
                   control={form.control}
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Board <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1382,8 +1373,8 @@ const Register = () => {
                   control={form.control}
                   name="sscRoll"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Roll No <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <FormControl className="w-2/3">
@@ -1397,8 +1388,8 @@ const Register = () => {
                   control={form.control}
                   name="sscInstitute"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         School/Institute{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1413,12 +1404,12 @@ const Register = () => {
                   control={form.control}
                   name="sscResult"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         SSC Result{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <div className="w-2/3 flex flex-col justify-start">
+                      <div className="w-2/3 flex flex-col justify-center items-center lg:justify-start">
                         {" "}
                         {/* Container for input and select */}
                         {grade ? (
@@ -1470,17 +1461,16 @@ const Register = () => {
                   control={form.control}
                   name="sscGroup"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Group/Subject{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1503,17 +1493,16 @@ const Register = () => {
                   control={form.control}
                   name="sscPassingYear"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Passing Year{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1558,17 +1547,16 @@ const Register = () => {
                   control={form.control}
                   name="hseExamName"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Examination{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1590,16 +1578,15 @@ const Register = () => {
                   control={form.control}
                   name="hscBoard"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Board <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1628,8 +1615,8 @@ const Register = () => {
                   control={form.control}
                   name="hscRoll"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Roll No <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <FormControl className="w-2/3">
@@ -1643,8 +1630,8 @@ const Register = () => {
                   control={form.control}
                   name="hscInstitute"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         College/Institute{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1659,12 +1646,12 @@ const Register = () => {
                   control={form.control}
                   name="hscResult"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         HSC Result{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <div className="w-2/3 flex flex-col justify-start">
+                      <div className="w-2/3 flex flex-col justify-center items-center lg:justify-start">
                         {" "}
                         {/* Container for input and select */}
                         {hscGrade ? (
@@ -1716,17 +1703,16 @@ const Register = () => {
                   control={form.control}
                   name="hscGroup"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Group/Subject{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1759,17 +1745,16 @@ const Register = () => {
                   control={form.control}
                   name="hscPassingYear"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Passing Year{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1817,17 +1802,16 @@ const Register = () => {
                   control={form.control}
                   name="graduationName"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Examination{" "}
                         <span className="text-red-900 text-sm">*</span>{" "}
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1854,8 +1838,8 @@ const Register = () => {
                   control={form.control}
                   name="graduationSubject"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Subject/Degree{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1870,8 +1854,8 @@ const Register = () => {
                   control={form.control}
                   name="graduationVersity"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Univerisy/Institute{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
@@ -1886,12 +1870,12 @@ const Register = () => {
                   control={form.control}
                   name="graduationResult"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Graduation Result{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <div className="w-2/3 flex flex-col justify-start">
+                      <div className="w-2/3 flex flex-col justify-center items-center lg:justify-start">
                         {" "}
                         {/* Container for input and select */}
                         {graduationGrade ? (
@@ -1943,17 +1927,16 @@ const Register = () => {
                   control={form.control}
                   name="graduationPassingYear"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Passing Year{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -1994,17 +1977,16 @@ const Register = () => {
                   control={form.control}
                   name="graduationCourseDuration"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Course Duration{" "}
                         <span className="text-red-900 text-xs">*</span>
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -2030,16 +2012,15 @@ const Register = () => {
                   control={form.control}
                   name="masterName"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Examination
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -2064,8 +2045,8 @@ const Register = () => {
                   control={form.control}
                   name="masterSubject"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Subject/Degree
                       </FormLabel>
                       <FormControl className="w-2/3">
@@ -2079,8 +2060,8 @@ const Register = () => {
                   control={form.control}
                   name="masterUniversity"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Univerisy/Institute
                       </FormLabel>
                       <FormControl className="w-2/3">
@@ -2094,12 +2075,12 @@ const Register = () => {
                   control={form.control}
                   name="masterResult"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/3 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Graduation Result{" "}
                         <span className="text-red-900 text-sm">*</span>
                       </FormLabel>
-                      <div className="w-2/3 flex flex-col justify-start">
+                      <div className="w-2/3 flex flex-col justify-center items-center lg:justify-start">
                         {" "}
                         {/* Container for input and select */}
                         {masterGrade ? (
@@ -2148,16 +2129,15 @@ const Register = () => {
                   control={form.control}
                   name="masterPassingYear"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Passing Year
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -2200,16 +2180,15 @@ const Register = () => {
                   control={form.control}
                   name="masterCourseDuration"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                      <FormLabel className="w-1/2 text-right">
+                    <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                      <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                         Course Duration
                       </FormLabel>
                       <Select
-                        className="w-1/2"
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <FormControl>
+                        <FormControl className="w-2/3">
                           <SelectTrigger>
                             <SelectValue placeholder="Select" />
                           </SelectTrigger>
@@ -2228,7 +2207,7 @@ const Register = () => {
                 />
                 {highClass ? (
                   <Button
-                    className="w-1/4 text-white justify-center"
+                    className="w-1/2 text-white justify-center items-center lg:w-1/4 "
                     onClick={() => setHighClass(!highClass)}
                   >
                     Add Education
@@ -2247,8 +2226,8 @@ const Register = () => {
                     control={form.control}
                     name="otherCourseName"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/3 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Examination
                         </FormLabel>
                         <FormControl className="w-2/3">
@@ -2262,8 +2241,8 @@ const Register = () => {
                     control={form.control}
                     name="otherCourseSubject"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/3 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Subject/Degree
                         </FormLabel>
                         <FormControl className="w-2/3">
@@ -2277,8 +2256,8 @@ const Register = () => {
                     control={form.control}
                     name="otherCourseUniversity"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/3 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Univerisy/Institute
                         </FormLabel>
                         <FormControl className="w-2/3">
@@ -2292,12 +2271,12 @@ const Register = () => {
                     control={form.control}
                     name="otherCourseResult"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/3 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Others Result{" "}
                           <span className="text-red-900 text-sm">*</span>
                         </FormLabel>
-                        <div className="w-2/3 flex flex-col justify-start">
+                        <div className="w-2/3 flex flex-col justify-center items-center lg:justify-start">
                           {" "}
                           {/* Container for input and select */}
                           {otherGrade ? (
@@ -2346,16 +2325,15 @@ const Register = () => {
                     control={form.control}
                     name="otherPassingYear"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/2 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Passing Year
                         </FormLabel>
                         <Select
-                          className="w-1/2"
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
-                          <FormControl>
+                          <FormControl className="w-2/3">
                             <SelectTrigger>
                               <SelectValue placeholder="Select" />
                             </SelectTrigger>
@@ -2398,16 +2376,15 @@ const Register = () => {
                     control={form.control}
                     name="otherCourseDuration"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/2 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Course Duration
                         </FormLabel>
                         <Select
-                          className="w-1/2"
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
-                          <FormControl>
+                          <FormControl className="w-2/3">
                             <SelectTrigger>
                               <SelectValue placeholder="Select" />
                             </SelectTrigger>
@@ -2439,8 +2416,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedOrganizationOne"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Organization{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2455,8 +2432,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedDesignationOne"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Designation{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2471,8 +2448,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedOrganizationAddressOne"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Address{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2484,13 +2461,13 @@ const Register = () => {
                       )}
                     />
                     <div className="flex w-[100%] flex-row justify-evenly items-center">
-                      <div className="flex flex-row justify-evenly items-center w-[70%] pl-10">
+                      <div className="w-full flex flex-col justify-evenly items-center lg:w-[70%] lg:pl-10 lg: flex-row">
                         <FormField
                           control={form.control}
                           name="experiedStartDateOne"
                           render={({ field }) => (
-                            <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                              <FormLabel className="w-1/3 text-right flex items-center">
+                            <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                              <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                                 Start Date{" "}
                                 <span className="text-red-900 text-sm">*</span>
                               </FormLabel>
@@ -2505,9 +2482,9 @@ const Register = () => {
                           control={form.control}
                           name="experiedEndDateOne"
                           render={({ field }) => (
-                            <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                              <FormLabel className="w-1/3 text-right flex items-center">
-                                Start Date{" "}
+                            <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                              <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
+                                End Date{" "}
                                 <span className="text-red-900 text-sm">*</span>
                               </FormLabel>
                               <FormControl className="w-2/3">
@@ -2523,8 +2500,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedDescriptionOne"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Job Description{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2537,7 +2514,7 @@ const Register = () => {
                     />
                     {studentCategoryTwo ? null : (
                       <Button
-                        className="w-1/4 text-white justify-center"
+                        className="w-1/2 flex text-white justify-center lg:w-1/4 "
                         onClick={() =>
                           setStudentCategoryTwo(!studentCategoryTwo)
                         }
@@ -2548,7 +2525,7 @@ const Register = () => {
                   </div>
                 ) : (
                   <Button
-                    className="w-1/4 text-white justify-center"
+                    className="w-1/2 lg:w-1/4 text-white justify-center"
                     onClick={() => setStudentCategoryOne(!studentCategoryOne)}
                   >
                     Add Experience
@@ -2568,8 +2545,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedOrganizationTwo"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Organization{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2584,8 +2561,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedDesignationTwo"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Designation{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2600,8 +2577,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedOrganizationAddressTwo"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Address{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2613,13 +2590,13 @@ const Register = () => {
                       )}
                     />
                     <div className="flex w-[100%] flex-row justify-center items-center">
-                      <div className="flex flex-row justify-center w-[72%] pl-11">
+                      <div className="w-full flex flex-col justify-evenly items-center lg:w-[70%] lg:pl-10 lg: flex-row">
                         <FormField
                           control={form.control}
                           name="experiedStartDateTwo"
                           render={({ field }) => (
-                            <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                              <FormLabel className="w-1/3 text-right flex items-center">
+                            <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                              <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                                 Start Date{" "}
                                 <span className="text-red-900 text-sm">*</span>
                               </FormLabel>
@@ -2634,9 +2611,9 @@ const Register = () => {
                           control={form.control}
                           name="experiedEndDateTwo"
                           render={({ field }) => (
-                            <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                              <FormLabel className="w-1/3 text-right flex items-center">
-                                Start Date{" "}
+                            <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                              <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
+                                End Date{" "}
                                 <span className="text-red-900 text-sm">*</span>
                               </FormLabel>
                               <FormControl className="w-2/3">
@@ -2652,8 +2629,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedDescriptionTwo"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Job Description{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2666,7 +2643,7 @@ const Register = () => {
                     />
                     {studentCategoryThree ? null : (
                       <Button
-                        className="w-1/4 text-white justify-center"
+                        className=" w-1/2 lg:w-1/4 text-white justify-center"
                         onClick={() =>
                           setStudentCategoryThree(!studentCategoryThree)
                         }
@@ -2690,8 +2667,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedOrganizationThree"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Organization{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2706,8 +2683,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedDesignationThree"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Designation{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2722,8 +2699,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedOrganizationAddressThree"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Address{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2735,13 +2712,13 @@ const Register = () => {
                       )}
                     />
                     <div className="flex w-[100%] flex-row justify-center items-center">
-                      <div className="flex flex-row justify-center w-[72%] pl-11">
+                      <div className="w-full flex flex-col justify-evenly items-center lg:w-[70%] lg:pl-10 lg: flex-row">
                         <FormField
                           control={form.control}
                           name="experiedStartDateThree"
                           render={({ field }) => (
-                            <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                              <FormLabel className="w-1/3 text-right flex items-center">
+                            <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                              <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                                 Start Date{" "}
                                 <span className="text-red-900 text-sm">*</span>
                               </FormLabel>
@@ -2756,8 +2733,8 @@ const Register = () => {
                           control={form.control}
                           name="experiedEndDateThree"
                           render={({ field }) => (
-                            <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                              <FormLabel className="w-1/3 text-right flex items-center">
+                            <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                              <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                                 Start Date{" "}
                                 <span className="text-red-900 text-sm">*</span>
                               </FormLabel>
@@ -2774,8 +2751,8 @@ const Register = () => {
                       control={form.control}
                       name="experiedDescriptionThree"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                          <FormLabel className="w-1/3 text-right">
+                        <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                          <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                             Job Description{" "}
                             <span className="text-red-900 text-sm">*</span>
                           </FormLabel>
@@ -2788,7 +2765,7 @@ const Register = () => {
                     />
                     {studentCategoryFour ? null : (
                       <Button
-                        className="w-1/4 text-white justify-center"
+                        className="w-1/2 lg:w-1/4 text-white justify-center"
                         onClick={() =>
                           setStudentCategoryFour(!studentCategoryFour)
                         }
@@ -2811,8 +2788,8 @@ const Register = () => {
                     control={form.control}
                     name="experiedOrganizationFour"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/3 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Organization{" "}
                           <span className="text-red-900 text-sm">*</span>
                         </FormLabel>
@@ -2827,8 +2804,8 @@ const Register = () => {
                     control={form.control}
                     name="experiedDesignationFour"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/3 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Designation{" "}
                           <span className="text-red-900 text-sm">*</span>
                         </FormLabel>
@@ -2843,8 +2820,8 @@ const Register = () => {
                     control={form.control}
                     name="experiedOrganizationAddressFour"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/3 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Address{" "}
                           <span className="text-red-900 text-sm">*</span>
                         </FormLabel>
@@ -2856,13 +2833,13 @@ const Register = () => {
                     )}
                   />
                   <div className="flex w-[100%] flex-row justify-center items-center">
-                    <div className="flex flex-row justify-center w-[72%] pl-11">
+                    <div className="w-full flex flex-col justify-evenly items-center lg:w-[70%] lg:pl-10 lg: flex-row">
                       <FormField
                         control={form.control}
                         name="experiedStartDateFour"
                         render={({ field }) => (
-                          <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                            <FormLabel className="w-1/3 text-right flex items-center">
+                          <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                            <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                               Start Date{" "}
                               <span className="text-red-900 text-sm">*</span>
                             </FormLabel>
@@ -2877,8 +2854,8 @@ const Register = () => {
                         control={form.control}
                         name="experiedEndDateFour"
                         render={({ field }) => (
-                          <FormItem className="flex flex-row justify-center gap-1 items-center w-1/2">
-                            <FormLabel className="w-1/3 text-right flex items-center">
+                          <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                            <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                               Start Date{" "}
                               <span className="text-red-900 text-sm">*</span>
                             </FormLabel>
@@ -2895,8 +2872,8 @@ const Register = () => {
                     control={form.control}
                     name="experiedDescriptionFour"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row justify-center gap-4 items-center w-11/12">
-                        <FormLabel className="w-1/3 text-right">
+                      <FormItem className="w-full flex flex-col justify-center items-center pt-6 lg:w-11/12 lg:flex-row lg:justify-center lg:gap-4 lg:items-center">
+                        <FormLabel className="w-2/3 text-center lg:w-1/3 lg:text-right">
                           Job Description{" "}
                           <span className="text-red-900 text-sm">*</span>
                         </FormLabel>
