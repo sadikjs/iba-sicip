@@ -4,11 +4,9 @@ const nextConfig = {
     localPatterns: [
       {
         pathname: "/uploads/**",
-        search: "",
       },
       {
         pathname: "/assets/**",
-        search: "",
       },
     ],
   },
