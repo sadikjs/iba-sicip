@@ -200,6 +200,8 @@ const Profile = ({ id }) => {
                     width={230}
                     height={270}
                     alt={data.name}
+                    objectFit="cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 )}
               </td>
@@ -212,8 +214,10 @@ const Profile = ({ id }) => {
                     className="rounded-sm pt-1.5"
                     src={data.signature}
                     width={220}
-                    height={250}
+                    height={200}
                     alt={data.name}
+                    objectFit="cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 )}
               </td>

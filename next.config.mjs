@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
+    localPatterns: [
       {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
+        pathname: "/uploads/**",
+        search: "",
       },
       {
-        protocol: "https",
-        hostname: "images.pexels.com",
+        pathname: "/assets/**",
+        search: "",
       },
     ],
   },
